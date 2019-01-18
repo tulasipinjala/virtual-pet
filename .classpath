@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry path="bin" kind="output"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/"/>
+	<classpathentry sourcepath="C:/Users/WeCanCodeIT/.gradle/caches/modules-2/files-2.1/junit/junit/4.13-beta-1/9dce6ee8700922293d5fe52ac9435cc2707bd2ba/junit-4.13-beta-1-sources.jar" kind="lib" path="C:/Users/WeCanCodeIT/.gradle/caches/modules-2/files-2.1/junit/junit/4.13-beta-1/1bc4a3b4a2d01a08c3a2cc8143666565b846ed17/junit-4.13-beta-1.jar"/>
+	<classpathentry sourcepath="C:/Users/WeCanCodeIT/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar" kind="lib" path="C:/Users/WeCanCodeIT/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"/>
+</classpath>
