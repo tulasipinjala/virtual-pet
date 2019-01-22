@@ -17,6 +17,10 @@ public class VirtualPet {
 		hunger -= time;
 		boredom -= time;
 		health -= time;
+		if (hunger < 0 || boredom < 0 || health < 0) {
+			System.out.println("Your pet has fainted");
+			System.exit(0);
+		}
 	}
 	public void feed() {
 		// Increase distance from 0 hunger
