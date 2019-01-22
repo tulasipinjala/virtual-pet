@@ -56,5 +56,29 @@ public class VirtualPetTest {
 		dog.tick(10);
 		int boredomValue = dog.getBoredom();
 		Assert.assertEquals(boredomValue, 90);
+
+}
+	@Test
+	public void shouldReturnIntialHealthasOneHundred() {
+		VirtualPet dog = new VirtualPet("Lassie");
+		int healthValue = dog.getHealth();
+		Assert.assertEquals(healthValue, 100);	
+	}
+	@Test
+	public void shouldReturnHealthAfterIntialCheckupAsOneHundredFifty() {
+		
+		VirtualPet dog = new VirtualPet("Lassie");
+		dog.checkup();
+		int healthValue = dog.getHealth();
+		Assert.assertEquals(healthValue, 150);
+	}
+	@Test
+	public void shouldReturnHealthAfterTenTicksAsNinety() {
+		
+		VirtualPet dog = new VirtualPet("Lassie");
+		dog.tick(10);
+		int healthValue = dog.getHealth();
+		Assert.assertEquals(healthValue, 90);
 	}
 }
+
