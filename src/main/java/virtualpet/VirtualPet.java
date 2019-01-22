@@ -26,6 +26,10 @@ public class VirtualPet {
 		// Must play with your pet
 		boredom += 50;
 	}
+	public void checkup() {
+		// Increase distance from 0 hunger
+		health += 50;
+	}
 //Accessor methods
 	public String getName() {
 		return name;
