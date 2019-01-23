@@ -6,6 +6,8 @@ public class VirtualPet {
 	private int hunger = 100;
 	private int boredom = 100;
 	private int health = 100;
+	private int dirty = 100;
+
 
 	// Constructor
 	public VirtualPet(String name) {
@@ -34,6 +36,10 @@ public class VirtualPet {
 		// Increase distance from 0 hunger
 		health += 50;
 	}
+	public void clean() {
+		// Increase distance from 0 dirty
+		dirty += 50;
+	}
 //Accessor methods
 	public String getName() {
 		return name;
@@ -50,6 +56,16 @@ public class VirtualPet {
 	public int getHealth() {
 		return health;
 	}
+	public int getDirty() {
+		return dirty;
+	}
+	public void getStatus() {
+		System.out.println(name + "\n Hunger is at " + hunger
+				+ "\n Boredom is at " + boredom
+				+ "\n Health is at " + health
+				+ "\n Dirty is at " + dirty);
+	}
+
  
 
 		
