@@ -6,8 +6,10 @@ public class Application {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-// This section determines pet;
-//chooses a pet name; allows user to choose help to find a list of commands
+		VirtualPetShelter virtualPetShelter = new VirtualPetShelter();
+
+		// This section determines pet;
+		//chooses a pet name; allows user to choose help to find a list of commands
 		String commands = "Commands\n Adopt - adopt a pet\n" + " Organic - choosing an animal pet\n"
 				+ " Robotic - choosing a robot pet\n" + " Feed <petname> - feeds your pet\n"
 				+ " Play <petname> - plays with your pet\n"
@@ -23,8 +25,10 @@ public class Application {
 			initPrompt = input.nextLine();
 		}
 
-		VirtualPet pet1 = new VirtualPet(initPrompt);
-		System.out.println("Your pet's name is " + pet1.getName());
+		virtualPetShelter.addVirtualPet(new VirtualPet(initPrompt));
+		System.out.println("Your pet's name is " + virtualPetShelter.get(initPrompt).getName());
+
+		System.out.println(virtualPetShelter.getVirtualPets());
 		System.out.println("What would you like to do?");
 
 		String userAction = input.nextLine();
@@ -41,6 +45,10 @@ public class Application {
 		} else if (userAction.trim().split("\\s+")[0].equalsIgnoreCase("play")) {
 			pet1.play();
 			pet1.getStatus();
+		} else if (userAction.trim().split("\\s+")[0].equalsIgnoreCase("add")) {
+			System.out.println("What is your new pet's name?");
+			virtualPetShelter.addVirtualPet(new VirtualPet(input.nextLine()));
+			System.out.println(virtualPetShelter.getVirtualPets());
 		}
 
 	}
