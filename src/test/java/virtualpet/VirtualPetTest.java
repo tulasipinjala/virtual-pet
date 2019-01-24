@@ -79,6 +79,7 @@ public class VirtualPetTest {
 		dog.tick(10);
 		int healthValue = dog.getHealth();
 		Assert.assertEquals(healthValue, 90);
-	}
+	} 
+
 }
 
