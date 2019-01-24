@@ -87,27 +87,40 @@ public class VirtualPet {
 				+ "\n Dirty is at " + dirty);
 	}
 
+//	public void getStatusChange() {
+//		System.out.println(name + "\n Hunger \t" + prevHunger + "\t" 
+//					+ appropriateArrow(prevHunger, hunger) + "\t" + hunger
+//				+ "\n Boredom \t" + prevHunger + "\t" 
+//				+ appropriateArrow(prevBoredom, boredom) + "\t"+ boredom
+//				+ "\n Health \t" + prevHealth + "\t" 
+//				+ appropriateArrow(prevHealth, health) + "\t"+ health
+//				+ "\n Dirty \t \t" + prevDirty + "\t" 
+//				+ appropriateArrow(prevDirty, dirty) + "\t"+ dirty);
+//	}
+	
 	public void getStatusChange() {
-		System.out.println(name + "\n Hunger \t" + prevHunger + "\t" 
-					+ appropriateArrow(prevHunger, hunger) + "\t" + hunger
-				+ "\n Boredom \t" + prevHunger + "\t" 
-				+ appropriateArrow(prevBoredom, boredom) + "\t"+ boredom
-				+ "\n Health \t" + prevHealth + "\t" 
-				+ appropriateArrow(prevHealth, health) + "\t"+ health
-				+ "\n Dirty \t" + prevDirty + "\t" 
-				+ appropriateArrow(prevDirty, dirty) + "\t"+ dirty);
-	}
+	System.out.println(name + "\n Hunger \t" + prevHunger + "\t" 
+				+ "=>" + "\t" + hunger
+			+ "\n Boredom \t" + prevHunger + "\t" 
+			+ "=>" + "\t"+ boredom
+			+ "\n Health \t" + prevHealth + "\t" 
+			+ "=>" + "\t"+ health
+			+ "\n Dirty \t \t" + prevDirty + "\t" 
+			+ "=>" + "\t"+ dirty);
+}
 	
 	//special methods
-	private String printCapitalizedVersion(String message) {
+	private static String printCapitalizedVersion(String message) {
 		return message.substring(0,1).toUpperCase() + message.substring(1).toLowerCase();
 	}
 	
 	private String appropriateArrow(int int1, int int2) {
 		if (int1 > int2) {
 			return "\u2193";
-		} else {
+		} else if (int1 < int2){
 			return "\u2191";
+		} else {
+			return "=";
 		}
 	}
 		

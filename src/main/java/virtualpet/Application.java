@@ -1,5 +1,6 @@
 package virtualpet;
 
+import java.util.Collection;
 import java.util.Scanner;
 
 public class Application {
@@ -10,8 +11,10 @@ public class Application {
 
 		// This section determines pet;
 		// chooses a pet name; allows user to choose help to find a list of commands
-		String commands = "Commands\n Adopt - adopt a pet\n" + " Organic - choosing an animal pet\n"
-				+ " Robotic - choosing a robot pet\n" + " Feed <petname> - feeds your pet\n"
+		String commands = "Commands\n Adopt - adopt a pet\n" 
+				+ " Organic - choosing an animal pet\n"
+				+ " Robotic - choosing a robot pet\n" 
+				+ " Feed <petname> - feeds your pet\n"
 				+ " Play <petname> - plays with your pet\n"
 				+ " Vet <petname> - Takes your pet to the vet to improve health\n"
 				+ " Adopt <petname> - This removes your pet from the shelter. THIS WILL BE PERMANENT.\n"
@@ -26,34 +29,40 @@ public class Application {
 		}
 
 		virtualPetShelter.addVirtualPet(new VirtualPet(initPrompt));
-		System.out.println("Your pet's name is " + virtualPetShelter.get(initPrompt).getName());
+		System.out.println("Your pet's name is " + virtualPetShelter.get(printCapitalizedVersion(initPrompt)).getName());
 
-		System.out.println(virtualPetShelter.getVirtualPets());
 		System.out.println("What would you like to do?");
 
 		String userAction = input.nextLine();
 		while (true) {
 			if (userAction.trim().split("\\s+")[0].equalsIgnoreCase("feed")) {
-				virtualPetShelter.get(userAction.trim().split("\\s+")[1]).feed();
-				virtualPetShelter.get(userAction.trim().split("\\s+")[1]).getStatus();
+				virtualPetShelter.get(printCapitalizedVersion(userAction.trim().split("\\s+")[1])).feed();
+				
+				Collection<VirtualPet> Pets = virtualPetShelter.getVirtualPets().values();
+		        for (VirtualPet specificPet : Pets) {
+		        		specificPet.getStatusChange();
+		        		System.out.println("");
+		        }
 			} else if (userAction.trim().split("\\s+")[0].equalsIgnoreCase("clean")) {
-				virtualPetShelter.get(userAction.trim().split("\\s+")[1]).clean();
-				virtualPetShelter.get(userAction.trim().split("\\s+")[1]).getStatus();
+				virtualPetShelter.get(printCapitalizedVersion(userAction.trim().split("\\s+")[1])).clean();
+				virtualPetShelter.get(printCapitalizedVersion(userAction.trim().split("\\s+")[1])).getStatusChange();
 			} else if (userAction.trim().split("\\s+")[0].equalsIgnoreCase("checkup")) {
-				virtualPetShelter.get(userAction.trim().split("\\s+")[1]).checkup();
-				virtualPetShelter.get(userAction.trim().split("\\s+")[1]).getStatus();
+				virtualPetShelter.get(printCapitalizedVersion(userAction.trim().split("\\s+")[1])).checkup();
+				virtualPetShelter.get(printCapitalizedVersion(userAction.trim().split("\\s+")[1])).getStatusChange();
 			} else if (userAction.trim().split("\\s+")[0].equalsIgnoreCase("play")) {
-				virtualPetShelter.get(userAction.trim().split("\\s+")[1]).play();
-				virtualPetShelter.get(userAction.trim().split("\\s+")[1]).getStatus();
+				virtualPetShelter.get(printCapitalizedVersion(userAction.trim().split("\\s+")[1])).play();
+				virtualPetShelter.get(printCapitalizedVersion(userAction.trim().split("\\s+")[1])).getStatusChange();
 			} else if (userAction.trim().split("\\s+")[0].equalsIgnoreCase("add")) {
 				System.out.println("What is your new pet's name?");
 				virtualPetShelter.addVirtualPet(new VirtualPet(input.nextLine()));
-				System.out.println(virtualPetShelter.getVirtualPets());
 			}
 			System.out.println("What would you like to do?");
 			userAction = input.nextLine();
 		}
 
 	}
-
-}
+	
+	private static String printCapitalizedVersion(String message) {
+		return message.substring(0,1).toUpperCase() + message.substring(1).toLowerCase();
+	}
+} 
