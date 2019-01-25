@@ -121,15 +121,24 @@ public class VirtualPet {
 			+ "=>" + "\t"+ boredom
 			+ "\n Health \t" + prevHealth + "\t" 
 			+ "=>" + "\t"+ health
-			+ "\n Dirty \t \t" + prevDirty + "\t" 
+			+ "\n Dirty \t\t" + prevDirty + "\t" 
 			+ "=>" + "\t"+ dirty
-			+ "\n Thirst \t \t" + prevThirst + "\t" 
+			+ "\n Thirst \t" + prevThirst + "\t" 
 			+ "=>" + "\t"+ thirst);
 }
 
 	// special methods
 	private static String printCapitalizedVersion(String message) {
-		return message.substring(0, 1).toUpperCase() + message.substring(1).toLowerCase();
+		String[] messageSplit = message.trim().split("\\s+");
+		if (messageSplit.length == 1) {
+			return message.substring(0, 1).toUpperCase() + message.substring(1).toLowerCase();
+		} else {
+			String longName = "";
+			for (int i = 0; i < message.trim().split("\\s+").length; i++) {
+				longName = longName + " " + messageSplit[i].substring(0, 1).toUpperCase() + messageSplit[i].substring(1).toLowerCase();
+			}
+			return longName;
+		}
 	}
 
 //	private String appropriateArrow(int int1, int int2) {
