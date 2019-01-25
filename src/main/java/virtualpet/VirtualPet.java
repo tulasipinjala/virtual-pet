@@ -101,6 +101,7 @@ public class VirtualPet {
 				+ "\n Health is at " + health
 				+ "\n Dirty is at " + dirty
 				+ "\n Thirst is at " + thirst);
+	}
 
 //	public void getStatusChange() {
 //		System.out.println(name + "\n Hunger \t" + prevHunger + "\t" 
