@@ -11,5 +11,4 @@ public class VirtualPetShelterTest {
 		Assert.assertEquals(clean.getCageCleanliness(), 100);
 	}
 	
-	
 }
