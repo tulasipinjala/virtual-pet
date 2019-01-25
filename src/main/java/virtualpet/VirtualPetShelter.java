@@ -18,7 +18,9 @@ public class VirtualPetShelter {
 	public void addVirtualPet(VirtualPet petToAdd) {
 		petList.put(petToAdd.getName(), petToAdd);
 	}
-
+	public void adoptVirtualPet(String petToAdopt) {
+		petList.remove(petToAdopt);
+	}
 	public int getVirtualPetCount() {
 		return petList.size();
 	}
@@ -76,7 +78,12 @@ public class VirtualPetShelter {
 
 		}
 	}
-
+	public void tickAll (int time) {
+		Collection<VirtualPet> Pets = getVirtualPets().values();
+		for (VirtualPet specificPet : Pets) {
+			specificPet.tick(time);
+		}
+	}
 	public void statusAll() {
 		Collection<VirtualPet> Pets = getVirtualPets().values();
 		for (VirtualPet specificPet : Pets) {
