@@ -91,5 +91,12 @@ public class VirtualPetShelter {
             System.out.println("");
 		}
 	}
+	
+	public void nameAll() {
+		Collection<VirtualPet> Pets = getVirtualPets().values();
+		for (VirtualPet specificPet : Pets) {
+            System.out.println(specificPet.getName());
+		}
+	}
 
 }
