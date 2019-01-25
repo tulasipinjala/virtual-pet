@@ -141,7 +141,7 @@ public class Application {
 			return message.substring(0, 1).toUpperCase() + message.substring(1).toLowerCase();
 		} else {
 			String longName = "";
-			for (int i = 0; i < message.trim().split("\\s+").length; i++) {
+			for (int i = 0; i < messageSplit.length; i++) {
 				longName = longName + " " + messageSplit[i].substring(0, 1).toUpperCase() + messageSplit[i].substring(1).toLowerCase();
 			}
 			return longName;

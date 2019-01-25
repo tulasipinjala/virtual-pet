@@ -32,8 +32,7 @@ public class VirtualPet {
 		thirst -= time;
 		dirty -= time;
 		if (hunger < 0 || boredom < 0 || health < 0 || thirst < 0|| dirty < 0) {
-			System.out.println("Your pet has fainted");
-			System.exit(0);
+			System.out.println(getName() + " has fainted");
 		}
 	}
 
@@ -134,7 +133,7 @@ public class VirtualPet {
 			return message.substring(0, 1).toUpperCase() + message.substring(1).toLowerCase();
 		} else {
 			String longName = "";
-			for (int i = 0; i < message.trim().split("\\s+").length; i++) {
+			for (int i = 0; i < messageSplit.length; i++) {
 				longName = longName + " " + messageSplit[i].substring(0, 1).toUpperCase() + messageSplit[i].substring(1).toLowerCase();
 			}
 			return longName;
