@@ -14,13 +14,14 @@ public class Application {
 		String intro = "Pet types \n" + " Organic - choosing an animal pet\n" + " Robotic - choosing a robot pet\n\n"
 				+ "WARNING" + " If you let any of the pet's properties go to zero, it will be adopted by Mr. Reaper.";
 
-		String commands = "Commands\n" + " 1. Feed <petname><all>\t- feeds your pet\n"
-				+ " 2. Play <petname><all>\t- plays with your pet\n"
+		String commands = "Commands\n" 
+				+ " 1. Feed <petname><all>\t\t- feeds your pet\n"
+				+ " 2. Play <petname><all>\t\t- plays with your pet\n"
 				+ " 3. Checkup <petname><all>\t- Takes your pet to the vet to improve health\n"
 				+ " 4. Clean <petname><all>\t- Cleans your pet\n" + " 5. Water <petname><all>\t- Give your pet water\n"
 
-				+ " 8. Add <petname>\t- Give your pet water\n"
-				+ " 9. Adopt <petname>\t- This removes your pet from the shelter. THIS WILL BE PERMANENT.\n"
+				+ " 8. Add <petname>\t\t- Give your pet water\n"
+				+ " 9. Adopt <petname>\t\t- This removes your pet from the shelter. THIS WILL BE PERMANENT.\n"
 				+ " 0. Exit - Exits VPet";
 		System.out.println("Please type in your first pet's name. Type \"help\" for list of commands.");
 		String userInput = input.nextLine();
