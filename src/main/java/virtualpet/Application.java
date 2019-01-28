@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Scanner;
 
 public class Application {
-
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		VirtualPetShelter virtualPetShelter = new VirtualPetShelter();
@@ -34,10 +33,13 @@ public class Application {
 		}
 
 		virtualPetShelter.addVirtualPet(new VirtualPet(userInput));
-		System.out.println("Your pet's name is " + virtualPetShelter.get(printCapitalizedVersion(userInput)).getName());
+		System.out.println(
+				"Your pet's name is " + virtualPetShelter.getPet(printCapitalizedVersion(userInput)).getName());
 
 		System.out.println("What would you like to do?");
-
+		long startTime = System.nanoTime();
+		long endTime;
+		long timeElapsed;
 		String userAction = "";
 		String userPetChoice = "";
 		userInput = input.nextLine();
@@ -57,55 +59,69 @@ public class Application {
 		}
 
 		while (true) {
+			endTime = System.nanoTime();
+			timeElapsed = (endTime - startTime)/1000000000; 
+			virtualPetShelter.tickAll((int) timeElapsed);
 			if (userAction.equalsIgnoreCase("feed") || userAction.equalsIgnoreCase("1")) {
-				if (userInputSplit.length == 1) {
-					System.out.println("Which pet?");
-					virtualPetShelter.nameAll();
-					System.out.println("");
-					userPetChoice = input.nextLine();
-				}
+				userPetChoice = chooseAPet(input, virtualPetShelter, userPetChoice, userInputSplit);
+				
 				if (userPetChoice.equalsIgnoreCase("all")) {
+					virtualPetShelter.tickAll(100);
 					virtualPetShelter.feedAll();
 				} else {
-				virtualPetShelter.get(printCapitalizedVersion(userPetChoice)).feed();
+					virtualPetShelter.tickAll(50);
+					virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice)).feed();
 				}
+				
 				virtualPetShelter.statusChangeAll();
 			} else if (userAction.equalsIgnoreCase("clean") || userAction.equalsIgnoreCase("2")) {
-				if (userInputSplit.length == 1) {
-					System.out.println("Which pet?");
-					virtualPetShelter.nameAll();
-					System.out.println("");
-					userPetChoice = input.nextLine();
+				userPetChoice = chooseAPet(input, virtualPetShelter, userPetChoice, userInputSplit);
+
+				if (userPetChoice.equalsIgnoreCase("all")) {
+					virtualPetShelter.tickAll(100);
+					virtualPetShelter.cleanAll();
+				} else {
+					virtualPetShelter.tickAll(50);
+					virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice)).clean();
 				}
-				virtualPetShelter.get(printCapitalizedVersion(userPetChoice)).clean();
-				virtualPetShelter.get(printCapitalizedVersion(userPetChoice)).getStatusChange();
+				
+				virtualPetShelter.statusChangeAll();
 			} else if (userAction.equalsIgnoreCase("checkup") || userAction.equalsIgnoreCase("3")) {
-				if (userInputSplit.length == 1) {
-					System.out.println("Which pet?");
-					virtualPetShelter.nameAll();
-					System.out.println("");
-					userPetChoice = input.nextLine();
+				userPetChoice = chooseAPet(input, virtualPetShelter, userPetChoice, userInputSplit);
+				
+				if (userPetChoice.equalsIgnoreCase("all")) {
+					virtualPetShelter.tickAll(100);
+					virtualPetShelter.checkupAll();
+				} else {
+					virtualPetShelter.tickAll(50);
+					virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice)).checkup();
 				}
-				virtualPetShelter.get(printCapitalizedVersion(userPetChoice)).checkup();
-				virtualPetShelter.get(printCapitalizedVersion(userPetChoice)).getStatusChange();
+				
+				virtualPetShelter.statusChangeAll();
 			} else if (userAction.equalsIgnoreCase("play") || userAction.equalsIgnoreCase("4")) {
-				if (userInputSplit.length == 1) {
-					System.out.println("Which pet?");
-					virtualPetShelter.nameAll();
-					System.out.println("");
-					userPetChoice = input.nextLine();
+				userPetChoice = chooseAPet(input, virtualPetShelter, userPetChoice, userInputSplit);
+				
+				if (userPetChoice.equalsIgnoreCase("all")) {
+					virtualPetShelter.tickAll(100);
+					virtualPetShelter.playAll();
+				} else {
+					virtualPetShelter.tickAll(50);
+					virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice)).play();
 				}
-				virtualPetShelter.get(printCapitalizedVersion(userPetChoice)).play();
-				virtualPetShelter.get(printCapitalizedVersion(userPetChoice)).getStatusChange();
-			} else if (userAction.equalsIgnoreCase("water") || userAction.equalsIgnoreCase("5")) {
-				if (userInputSplit.length == 1) {
-					System.out.println("Which pet?");
-					virtualPetShelter.nameAll();
-					System.out.println("");
-					userPetChoice = input.nextLine();
+				
+				virtualPetShelter.statusChangeAll();
+			} else if (userAction.equalsIgnoreCase("water") || userAction.equalsIgnoreCase("50")) {
+				userPetChoice = chooseAPet(input, virtualPetShelter, userPetChoice, userInputSplit);
+				
+				if (userPetChoice.equalsIgnoreCase("all")) {
+					virtualPetShelter.tickAll(100);
+					virtualPetShelter.waterAll();
+				} else {
+					virtualPetShelter.tickAll(50);
+					virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice)).water();
 				}
-				virtualPetShelter.get(printCapitalizedVersion(userPetChoice)).water();
-				virtualPetShelter.get(printCapitalizedVersion(userPetChoice)).getStatusChange();
+				
+				virtualPetShelter.statusChangeAll();
 			} else if (userAction.equalsIgnoreCase("help")) {
 				System.out.println(commands);
 			} else if (userAction.equalsIgnoreCase("exit") || userAction.equalsIgnoreCase("0")) {
@@ -117,6 +133,7 @@ public class Application {
 				System.out.println(commands);
 			}
 			System.out.println("What would you like to do?");
+			startTime = System.nanoTime();
 			userInput = input.nextLine();
 			userInputSplit = userInput.trim().split("\\s+");
 			if (userInputSplit.length == 1) {
@@ -132,8 +149,20 @@ public class Application {
 				}
 				userPetChoice = printCapitalizedVersion(longPetname);
 			}
+			virtualPetShelter.updatePrevPropertiesAll();
 		}
 
+	}
+
+	private static String chooseAPet(Scanner input, VirtualPetShelter virtualPetShelter, String userPetChoice,
+			String[] userInputSplit) {
+		if (userInputSplit.length == 1) {
+			System.out.println("Which pet?");
+			virtualPetShelter.nameAll();
+			System.out.println("");
+			userPetChoice = input.nextLine();
+		}
+		return userPetChoice;
 	}
 
 	private static String printCapitalizedVersion(String message) {
@@ -143,7 +172,8 @@ public class Application {
 		} else {
 			String longName = "";
 			for (int i = 0; i < messageSplit.length; i++) {
-				longName = longName + " " + messageSplit[i].substring(0, 1).toUpperCase() + messageSplit[i].substring(1).toLowerCase();
+				longName = longName + " " + messageSplit[i].substring(0, 1).toUpperCase()
+						+ messageSplit[i].substring(1).toLowerCase();
 			}
 			return longName;
 		}

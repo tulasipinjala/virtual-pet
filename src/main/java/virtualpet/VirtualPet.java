@@ -3,19 +3,19 @@ package virtualpet;
 public class VirtualPet {
 	// Properties
 	private String nameRaw;
-	private int hunger = 100;
-	private int boredom = 100;
-	private int health = 100;
-	private int dirty = 100;
-	private int thirst = 100;
+	private int hunger = 1000;
+	private int boredom = 1000;
+	private int health = 1000;
+	private int dirty = 1000;
+	private int thirst = 1000;
 
 	private boolean organic = true;
 
-	private int prevHunger = 100;
-	private int prevBoredom = 100;
-	private int prevHealth = 100;
-	private int prevDirty = 100;
-	private int prevThirst = 100;
+	private int prevHunger = 1000;
+	private int prevBoredom = 1000;
+	private int prevHealth = 1000;
+	private int prevDirty = 1000;
+	private int prevThirst = 1000;
 	private String name;
 
 	// Constructor
@@ -37,23 +37,23 @@ public class VirtualPet {
 	}
 
 	public void feed() { // Increase distance from 0 hunger
-		hunger += 50;
+		hunger += 500;
 	}
 
 	public void play() { // Must play with your pet
-		boredom += 50;
+		boredom += 500;
 	}
 
 	public void checkup() { // Increase distance from 0 hunger
-		health += 50;
+		health += 500;
 	}
 
 	public void clean() { // Increase distance from 0 dirty
-		dirty += 50;
+		dirty += 500;
 	}
 
 	public void water() { // Increase distance from 0 dirty
-		thirst += 50;
+		thirst += 500;
 	}
 	
 	
@@ -114,9 +114,10 @@ public class VirtualPet {
 //	}
 
 	public void getStatusChange() {
-	System.out.println(name + "\n Hunger \t" + prevHunger + "\t" 
-				+ "=>" + "\t" + hunger
-			+ "\n Boredom \t" + prevHunger + "\t" 
+	System.out.println(name
+			+ "\n Hunger \t" + prevHunger + "\t" 
+			+ "=>" + "\t" + hunger
+			+ "\n Boredom \t" + prevBoredom + "\t" 
 			+ "=>" + "\t"+ boredom
 			+ "\n Health \t" + prevHealth + "\t" 
 			+ "=>" + "\t"+ health
