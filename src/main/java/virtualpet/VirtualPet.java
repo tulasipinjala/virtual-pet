@@ -3,76 +3,22 @@ package virtualpet;
 public class VirtualPet {
 	// Properties
 	private String nameRaw;
-	private int hunger = 1000;
-	private int boredom = 1000;
-	private int health = 1000;
-	private int dirty = 1000;
-	private int thirst = 1000;
+	private int hunger;
+	private int boredom;
+	private int health;
+	private int dirty;
+	private int thirst;
 
-	private boolean organic = true;
-
-	private int prevHunger = 1000;
-	private int prevBoredom = 1000;
-	private int prevHealth = 1000;
-	private int prevDirty = 1000;
-	private int prevThirst = 1000;
+	private int prevHunger;
+	private int prevBoredom;
+	private int prevHealth;
+	private int prevDirty;
+	private int prevThirst;
 	private String name;
-
-	// Constructor
-	public VirtualPet(String name) {
-		this.nameRaw = name;
-		this.name = printCapitalizedVersion(nameRaw);
-	}
-
-	// Method
-	public void tick(int time) {
-		hunger -= time;
-		boredom -= time;
-		health -= time;
-		thirst -= time;
-		dirty -= time;
-		if (hunger < 0 || boredom < 0 || health < 0 || thirst < 0|| dirty < 0) {
-			System.out.println(getName() + " has fainted");
-		}
-	}
-
-	public void feed() { // Increase distance from 0 hunger
-		hunger += 500;
-	}
-
-	public void play() { // Must play with your pet
-		boredom += 500;
-	}
-
-	public void checkup() { // Increase distance from 0 hunger
-		health += 500;
-	}
-
-	public void clean() { // Increase distance from 0 dirty
-		dirty += 500;
-	}
-
-	public void water() { // Increase distance from 0 dirty
-		thirst += 500;
-	}
-	
-	
-
-	public void updatePrevProperties() {
-		prevHunger = hunger;
-		prevBoredom = boredom;
-		prevHealth = health;
-		prevDirty = dirty;
-		prevThirst = thirst;
-	}
 
 	// Accessor method
 	public String getName() {
 		return name;
-	}
-
-	public boolean getOrganic() {
-		return organic;
 	}
 
 	public int getHunger() {
@@ -94,38 +40,76 @@ public class VirtualPet {
 	public int getThirst() {
 		return thirst;
 	}
+
 	public void getStatus() {
-		System.out.println(name + "\n Hunger is at " + hunger
-				+ "\n Boredom is at " + boredom
-				+ "\n Health is at " + health
-				+ "\n Dirty is at " + dirty
-				+ "\n Thirst is at " + thirst);
+		System.out.println(name + "\n Hunger is at " + hunger + "\n Boredom is at " + boredom + "\n Health is at "
+				+ health + "\n Dirty is at " + dirty + "\n Thirst is at " + thirst);
 	}
 
-//	public void getStatusChange() {
-//		System.out.println(name + "\n Hunger \t" + prevHunger + "\t" 
-//					+ appropriateArrow(prevHunger, hunger) + "\t" + hunger
-//				+ "\n Boredom \t" + prevHunger + "\t" 
-//				+ appropriateArrow(prevBoredom, boredom) + "\t"+ boredom
-//				+ "\n Health \t" + prevHealth + "\t" 
-//				+ appropriateArrow(prevHealth, health) + "\t"+ health
-//				+ "\n Dirty \t \t" + prevDirty + "\t" 
-//				+ appropriateArrow(prevDirty, dirty) + "\t"+ dirty);
-//	}
-
 	public void getStatusChange() {
-	System.out.println(name
-			+ "\n Hunger \t" + prevHunger + "\t" 
-			+ "=>" + "\t" + hunger
-			+ "\n Boredom \t" + prevBoredom + "\t" 
-			+ "=>" + "\t"+ boredom
-			+ "\n Health \t" + prevHealth + "\t" 
-			+ "=>" + "\t"+ health
-			+ "\n Dirty \t\t" + prevDirty + "\t" 
-			+ "=>" + "\t"+ dirty
-			+ "\n Thirst \t" + prevThirst + "\t" 
-			+ "=>" + "\t"+ thirst);
-}
+		System.out.println(name + "\n Hunger \t" + prevHunger + "\t" + "=>" + "\t" + hunger + "\n Boredom \t"
+				+ prevBoredom + "\t" + "=>" + "\t" + boredom + "\n Health \t" + prevHealth + "\t" + "=>" + "\t" + health
+				+ "\n Dirty \t\t" + prevDirty + "\t" + "=>" + "\t" + dirty + "\n Thirst \t" + prevThirst + "\t" + "=>"
+				+ "\t" + thirst);
+
+	}
+
+	// Constructor
+	public VirtualPet(String name) {
+		this.nameRaw = name;
+		this.name = printCapitalizedVersion(nameRaw);
+		hunger = 1000;
+		boredom = 1000;
+		health = 1000;
+		dirty = 1000;
+		thirst = 1000;
+
+		prevHunger = 1000;
+		prevBoredom = 1000;
+		prevHealth = 1000;
+		prevDirty = 1000;
+		prevThirst = 1000;
+	}
+
+	// Method
+	public void tick(int time) {
+		hunger -= time;
+		boredom -= time;
+		health -= time;
+		thirst -= time;
+		dirty -= time;
+		if (hunger < 0 || boredom < 0 || health < 0 || thirst < 0 || dirty < 0) {
+			System.out.println(getName() + " has fainted");
+		}
+	}
+
+	public void feed() { // Increase distance from 0 hunger
+		hunger += 500;
+	}
+
+	public void play() { // Must play with your pet
+		boredom += 500;
+	}
+
+	public void checkup() { // Increase distance from 0 hunger
+		health = 1500;
+	}
+
+	public void clean() { // Increase distance from 0 dirty
+		dirty += 500;
+	}
+
+	public void water() { // Increase distance from 0 dirty
+		thirst += 500;
+	}
+
+	public void updatePrevProperties() {
+		prevHunger = hunger;
+		prevBoredom = boredom;
+		prevHealth = health;
+		prevDirty = dirty;
+		prevThirst = thirst;
+	}
 
 	// special methods
 	private static String printCapitalizedVersion(String message) {
@@ -135,20 +119,13 @@ public class VirtualPet {
 		} else {
 			String longName = "";
 			for (int i = 0; i < messageSplit.length; i++) {
-				longName = longName + " " + messageSplit[i].substring(0, 1).toUpperCase() + messageSplit[i].substring(1).toLowerCase();
+				longName = longName + " " + messageSplit[i].substring(0, 1).toUpperCase()
+						+ messageSplit[i].substring(1).toLowerCase();
 			}
 			return longName;
 		}
 	}
 
-//	private String appropriateArrow(int int1, int int2) {
-//		if (int1 > int2) {
-//			return "\u2193";
-//		} else if (int1 < int2){
-//			return "\u2191";
-//		} else {
-//			return "=";
-//		}
-//	}
-
 }
+
+
