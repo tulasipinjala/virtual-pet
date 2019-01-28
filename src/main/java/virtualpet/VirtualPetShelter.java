@@ -18,25 +18,13 @@ public class VirtualPetShelter {
 	public void addVirtualPet(VirtualPet petToAdd) {
 		petList.put(petToAdd.getName(), petToAdd);
 	}
+
 	public void adoptVirtualPet(String petToAdopt) {
 		petList.remove(petToAdopt);
 	}
+
 	public int getVirtualPetCount() {
 		return petList.size();
-	}
-
-	// Accessor method
-	public int getCageCleanliness() {
-
-		return cageCleanliness;
-	}
-
-	public HashMap<String, VirtualPet> getVirtualPets() {
-		return petList;
-	}
-
-	public VirtualPet get(String initPrompt) {
-		return petList.get(initPrompt);
 	}
 
 	public void feedAll() {
@@ -78,32 +66,55 @@ public class VirtualPetShelter {
 
 		}
 	}
-	public void tickAll (int time) {
+
+	public void tickAll(int time) {
 		Collection<VirtualPet> Pets = getVirtualPets().values();
 		for (VirtualPet specificPet : Pets) {
 			specificPet.tick(time);
 		}
 	}
+
 	public void statusAll() {
 		Collection<VirtualPet> Pets = getVirtualPets().values();
 		for (VirtualPet specificPet : Pets) {
 			specificPet.getStatus();
-            System.out.println("");
+			System.out.println("");
 		}
 	}
+
+	public void updatePrevPropertiesAll() {
+		Collection<VirtualPet> Pets = getVirtualPets().values();
+		for (VirtualPet specificPet : Pets) {
+			specificPet.updatePrevProperties();
+		}
+	}
+
+	public void nameAll() {
+		Collection<VirtualPet> Pets = getVirtualPets().values();
+		for (VirtualPet specificPet : Pets) {
+			System.out.println(specificPet.getName());
+		}
+	}
+	
 	public void statusChangeAll() {
 		Collection<VirtualPet> Pets = getVirtualPets().values();
 		for (VirtualPet specificPet : Pets) {
 			specificPet.getStatusChange();
-            System.out.println("");
+			System.out.println("");
 		}
 	}
-	
-	public void nameAll() {
-		Collection<VirtualPet> Pets = getVirtualPets().values();
-		for (VirtualPet specificPet : Pets) {
-            System.out.println(specificPet.getName());
-		}
+	// Accessor method
+	public int getCageCleanliness() {
+
+		return cageCleanliness;
+	}
+
+	public HashMap<String, VirtualPet> getVirtualPets() {
+		return petList;
+	}
+
+	public VirtualPet getPet(String initPrompt) {
+		return petList.get(initPrompt);
 	}
 
 }
