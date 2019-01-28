@@ -9,6 +9,20 @@ public class VirtualPetShelter {
 
 	private int cageCleanliness = 100;
 
+	// Accessor method
+	public int getCageCleanliness() {
+
+		return cageCleanliness;
+	}
+
+	public HashMap<String, VirtualPet> getVirtualPets() {
+		return petList;
+	}
+
+	public VirtualPet getPet(String initPrompt) {
+		return petList.get(initPrompt);
+	}
+
 	// Constructor
 	public VirtualPetShelter() {
 
@@ -28,93 +42,70 @@ public class VirtualPetShelter {
 	}
 
 	public void feedAll() {
-		Collection<VirtualPet> Pets = getVirtualPets().values();
-		for (VirtualPet specificPet : Pets) {
+		for (VirtualPet specificPet : petList.values()) {
 			specificPet.feed();
 
 		}
 	}
 
 	public void cleanAll() {
-		Collection<VirtualPet> Pets = getVirtualPets().values();
-		for (VirtualPet specificPet : Pets) {
+		for (VirtualPet specificPet : petList.values()) {
 			specificPet.clean();
 
 		}
 	}
 
 	public void playAll() {
-		Collection<VirtualPet> Pets = getVirtualPets().values();
-		for (VirtualPet specificPet : Pets) {
+		for (VirtualPet specificPet : petList.values()) {
 			specificPet.play();
 
 		}
 	}
 
 	public void waterAll() {
-		Collection<VirtualPet> Pets = getVirtualPets().values();
-		for (VirtualPet specificPet : Pets) {
+		for (VirtualPet specificPet : petList.values()) {
 			specificPet.water();
 
 		}
 	}
 
 	public void checkupAll() {
-		Collection<VirtualPet> Pets = getVirtualPets().values();
-		for (VirtualPet specificPet : Pets) {
+		for (VirtualPet specificPet : petList.values()) {
 			specificPet.checkup();
 
 		}
 	}
 
 	public void tickAll(int time) {
-		Collection<VirtualPet> Pets = getVirtualPets().values();
-		for (VirtualPet specificPet : Pets) {
+		for (VirtualPet specificPet : petList.values()) {
 			specificPet.tick(time);
 		}
 	}
 
 	public void statusAll() {
-		Collection<VirtualPet> Pets = getVirtualPets().values();
-		for (VirtualPet specificPet : Pets) {
+		for (VirtualPet specificPet : petList.values()) {
 			specificPet.getStatus();
 			System.out.println("");
 		}
 	}
 
 	public void updatePrevPropertiesAll() {
-		Collection<VirtualPet> Pets = getVirtualPets().values();
-		for (VirtualPet specificPet : Pets) {
+		for (VirtualPet specificPet : petList.values()) {
 			specificPet.updatePrevProperties();
 		}
 	}
 
 	public void nameAll() {
-		Collection<VirtualPet> Pets = getVirtualPets().values();
-		for (VirtualPet specificPet : Pets) {
+		for (VirtualPet specificPet : petList.values()) {
 			System.out.println(specificPet.getName());
 		}
 	}
-	
+
 	public void statusChangeAll() {
-		Collection<VirtualPet> Pets = getVirtualPets().values();
-		for (VirtualPet specificPet : Pets) {
+		for (VirtualPet specificPet : petList.values()) {
 			specificPet.getStatusChange();
 			System.out.println("");
 		}
-	}
-	// Accessor method
-	public int getCageCleanliness() {
-
-		return cageCleanliness;
-	}
-
-	public HashMap<String, VirtualPet> getVirtualPets() {
-		return petList;
-	}
-
-	public VirtualPet getPet(String initPrompt) {
-		return petList.get(initPrompt);
 	}
 
 }
