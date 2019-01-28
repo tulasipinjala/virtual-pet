@@ -132,6 +132,7 @@ public class Application {
 			} else {
 				System.out.println(commands);
 			}
+			virtualPetShelter.updatePrevPropertiesAll();
 			System.out.println("What would you like to do?");
 			startTime = System.nanoTime();
 			userInput = input.nextLine();
@@ -149,7 +150,7 @@ public class Application {
 				}
 				userPetChoice = printCapitalizedVersion(longPetname);
 			}
-			virtualPetShelter.updatePrevPropertiesAll();
+
 		}
 
 	}
