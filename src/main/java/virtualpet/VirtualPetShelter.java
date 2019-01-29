@@ -43,7 +43,9 @@ public class VirtualPetShelter {
 
 	public void feedAll() {
 		for (VirtualPet specificPet : petList.values()) {
-			specificPet.feed();
+			if (specificPet instanceof Organic) {
+				((Organic) specificPet).feed();
+			}
 
 		}
 	}
@@ -64,35 +66,72 @@ public class VirtualPetShelter {
 
 	public void waterAll() {
 		for (VirtualPet specificPet : petList.values()) {
-			specificPet.water();
+			if (specificPet instanceof Organic) {
+				((Organic) specificPet).water();
+			}
 
 		}
 	}
 
 	public void checkupAll() {
 		for (VirtualPet specificPet : petList.values()) {
-			specificPet.checkup();
+			if (specificPet instanceof Organic) {
+				((Organic) specificPet).checkup();
+			}
+
+		}
+	}
+
+	public void pluginAll() {
+		for (VirtualPet specificPet : petList.values()) {
+			if (specificPet instanceof Robotic) {
+				((Robotic) specificPet).plugin();
+			}
+
+		}
+	}
+
+	public void defragAll() {
+		for (VirtualPet specificPet : petList.values()) {
+			if (specificPet instanceof Robotic) {
+				((Robotic) specificPet).defrag();
+			}
 
 		}
 	}
 
 	public void tickAll(int time) {
 		for (VirtualPet specificPet : petList.values()) {
-			specificPet.tick(time);
+			if (specificPet instanceof Organic) {
+				((Organic) specificPet).tick(time);
+			} else if (specificPet instanceof Robotic) {
+				((Robotic) specificPet).tick(time);
+			}
 		}
+
 	}
 
 	public void statusAll() {
 		for (VirtualPet specificPet : petList.values()) {
-			specificPet.getStatus();
-			System.out.println("");
+			if (specificPet instanceof Organic) {
+				((Organic) specificPet).getStatus();
+				System.out.println("");
+			} else if (specificPet instanceof Robotic) {
+				((Robotic) specificPet).getStatus();
+				System.out.println("");
+			}
 		}
 	}
 
 	public void updatePrevPropertiesAll() {
 		for (VirtualPet specificPet : petList.values()) {
-			specificPet.updatePrevProperties();
+			if (specificPet instanceof Organic) {
+				((Organic) specificPet).updatePrevProperties();
+			} else if (specificPet instanceof Robotic) {
+				((Robotic) specificPet).updatePrevProperties();
+			}
 		}
+
 	}
 
 	public void nameAll() {
@@ -101,11 +140,33 @@ public class VirtualPetShelter {
 		}
 	}
 
+	public void nameAllOrganic() {
+		for (VirtualPet specificPet : petList.values()) {
+			if (specificPet instanceof Organic) {
+				System.out.println(specificPet.getName());
+			}
+		}
+	}
+
+	public void nameAllRobotic() {
+		for (VirtualPet specificPet : petList.values()) {
+			if (specificPet instanceof Robotic) {
+				System.out.println(specificPet.getName());
+			}
+		}
+	}
+
 	public void statusChangeAll() {
 		for (VirtualPet specificPet : petList.values()) {
-			specificPet.getStatusChange();
-			System.out.println("");
+			if (specificPet instanceof Organic) {
+				((Organic) specificPet).getStatusChange();
+				System.out.println("");
+			} else if (specificPet instanceof Robotic) {
+				((Robotic) specificPet).getStatusChange();
+				System.out.println("");
+			}
 		}
+
 	}
 
 }
