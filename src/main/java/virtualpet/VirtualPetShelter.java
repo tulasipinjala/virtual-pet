@@ -1,7 +1,11 @@
 package virtualpet;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 
 public class VirtualPetShelter {
 
@@ -157,16 +161,23 @@ public class VirtualPetShelter {
 	}
 
 	public void statusChangeAll() {
-		for (VirtualPet specificPet : petList.values()) {
+		List<VirtualPet> petsByName = new ArrayList<>(petList.values());
+
+		Collections.sort(petsByName, Comparator.comparing(VirtualPet::getName));
+
+		System.out.println("Organic");
+		for (VirtualPet specificPet : petsByName) {
 			if (specificPet instanceof Organic) {
 				((Organic) specificPet).getStatusChange();
 				System.out.println("");
-			} else if (specificPet instanceof Robotic) {
+			}
+		}
+		System.out.println("Robotic");
+		for (VirtualPet specificPet : petsByName) {
+			if (specificPet instanceof Robotic) {
 				((Robotic) specificPet).getStatusChange();
 				System.out.println("");
 			}
 		}
-
 	}
-
 }
