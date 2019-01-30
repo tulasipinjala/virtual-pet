@@ -11,7 +11,7 @@ public class VirtualPetShelter {
 
 	private HashMap<String, VirtualPet> petList = new HashMap<String, VirtualPet>();
 
-	private int cageCleanliness = 100;
+	private int cageCleanliness = 1000;
 
 	// Accessor method
 	public int getCageCleanliness() {
@@ -105,6 +105,7 @@ public class VirtualPetShelter {
 	}
 
 	public void tickAll(int time) {
+		cageCleanliness -= time;
 		for (VirtualPet specificPet : petList.values()) {
 			if (specificPet instanceof Organic) {
 				((Organic) specificPet).tick(time);
@@ -164,20 +165,36 @@ public class VirtualPetShelter {
 		List<VirtualPet> petsByName = new ArrayList<>(petList.values());
 
 		Collections.sort(petsByName, Comparator.comparing(VirtualPet::getName));
-
-		System.out.println("Organic");
+		
+		Boolean noneCheckOrganic = true; 
+		Boolean noneCheckRobotic = true;
+		
+		System.out.println("Cage Cleanliness is at " + cageCleanliness);
+		System.out.println();
+		System.out.println("Organic:");
 		for (VirtualPet specificPet : petsByName) {
 			if (specificPet instanceof Organic) {
 				((Organic) specificPet).getStatusChange();
 				System.out.println("");
+				noneCheckOrganic = false;
 			}
 		}
-		System.out.println("Robotic");
+		if (noneCheckOrganic) {
+			System.out.println("none");
+			System.out.println();
+		}
+		
+		System.out.println("Robotic:");
 		for (VirtualPet specificPet : petsByName) {
 			if (specificPet instanceof Robotic) {
 				((Robotic) specificPet).getStatusChange();
 				System.out.println("");
+				noneCheckRobotic = false;
 			}
+		}
+		if (noneCheckRobotic) {
+			System.out.println("none");
+			System.out.println();
 		}
 	}
 }

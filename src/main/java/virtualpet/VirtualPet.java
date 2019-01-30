@@ -44,10 +44,8 @@ public class VirtualPet {
 
 	// Method
 	public void tick(int time) {
-
 		boredom -= time;
 		dirty -= time;
-
 	}
 
 	public void play() { // Must play with your pet
