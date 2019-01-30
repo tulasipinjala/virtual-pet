@@ -15,7 +15,6 @@ public class VirtualPetShelter {
 
 	// Accessor method
 	public int getCageCleanliness() {
-
 		return cageCleanliness;
 	}
 
