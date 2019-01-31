@@ -1,10 +1,12 @@
 package virtualpet;
 
+import java.util.Random;
+
 public class Organic extends VirtualPet {
 	private int hunger;
 	private int health;
 	private int thirst;
-	
+	private String soundOrganic;
 
 	private int prevHunger;
 	private int prevHealth;
@@ -36,14 +38,13 @@ public class Organic extends VirtualPet {
 				+ "\n Thirst \t" + barMaker(thirst));
 	}
 
-
-	
 	//constructor
 	public Organic(String name) {
 		super(name);
 		hunger = 1000;
 		health = 1000;
 		thirst = 1000;
+		soundOrganic = getRandomSound();
 		
 		prevHunger = 1000;
 		prevHealth = 1000;
@@ -73,6 +74,10 @@ public class Organic extends VirtualPet {
 		thirst += 500;
 	}
 	
+	public void roar() {
+		MakeSound.playSound(getDirectory() + "\\soundfiles\\" + soundOrganic + ".wav");
+	}
+	
 	public void updatePrevProperties() {
 		
 		super.updatePrevProperties();
@@ -81,7 +86,11 @@ public class Organic extends VirtualPet {
 		prevThirst = thirst;
 	}
 	
-	
+	public static String getRandomSound() {
+		String[] soundNames = {"bulbasaur","charmander","squirtle","caterpie", "pikachu", "weedle"};
+	    int rnd = new Random().nextInt(soundNames.length);
+	    return soundNames[rnd];
+	}
 
 
 }

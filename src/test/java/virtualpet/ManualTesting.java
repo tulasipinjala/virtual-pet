@@ -5,6 +5,10 @@ import java.util.Scanner;
 public class ManualTesting {
 
 	public static void main(String[] args) {
+		MakeSound.playSound("C:\\Users\\WeCanCodeIT\\wcci\\default-workspace\\virtual-pet\\soundfiles\\bulbasaur.wav");
+		String directory = System.getProperty("user.dir").replace("\\", "\\\\");
+		MakeSound.playSound(directory + "\\soundfiles\\" + "bulbasaur" + ".wav");
+		
 		Scanner input = new Scanner(System.in);
 		//dog 
 		System.out.println("           __\r\n" + 

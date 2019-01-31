@@ -1,9 +1,12 @@
 package virtualpet;
 
+import java.util.Random;
+
 public class Robotic extends VirtualPet {
 	private int fragmentation;
 	private int charge;
-
+	private String soundRobotic; 
+	
 	private int prevFragmentation;
 	private int prevCharge;
 
@@ -33,6 +36,7 @@ public class Robotic extends VirtualPet {
 		super(name);
 		charge = 1000;
 		fragmentation = 1500;
+		soundRobotic = getRandomSound();
 
 		prevCharge = 1000;
 		prevFragmentation = 1500;
@@ -59,11 +63,19 @@ public class Robotic extends VirtualPet {
 		fragmentation = 1500;
 	}
 	
+	public void soundEffect() {
+		MakeSound.playSound(getDirectory() + "\\soundfiles\\" + soundRobotic + ".wav");
+	}
+	
 	public void updatePrevProperties() {
-		
 		super.updatePrevProperties();
 		prevCharge = charge;
 		prevFragmentation = fragmentation;
-		
+	}
+	
+	public static String getRandomSound() {
+		String[] soundNames = {"bulbasaur","charmander","squirtle","caterpie", "pikachu", "weedle"};
+	    int rnd = new Random().nextInt(soundNames.length);
+	    return soundNames[rnd];
 	}
 }

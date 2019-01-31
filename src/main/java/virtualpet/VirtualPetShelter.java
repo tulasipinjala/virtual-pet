@@ -178,6 +178,7 @@ public void cleanCage() {
 		for (VirtualPet specificPet : petsByName) {
 			if (specificPet instanceof Organic) {
 				((Organic) specificPet).getStatusChange();
+				((Organic) specificPet).roar();
 				System.out.println("");
 				noneCheckOrganic = false;
 			}
@@ -191,6 +192,7 @@ public void cleanCage() {
 		for (VirtualPet specificPet : petsByName) {
 			if (specificPet instanceof Robotic) {
 				((Robotic) specificPet).getStatusChange();
+				((Robotic) specificPet).soundEffect();
 				System.out.println("");
 				noneCheckRobotic = false;
 			}

@@ -1,10 +1,11 @@
 package virtualpet;
 
-public class VirtualPet {
+public abstract class VirtualPet {
 	// Properties
 	private String nameRaw;
 	private int boredom;
 	private int dirty;
+	private String directory = System.getProperty("user.dir").replace("\\", "\\\\");
 
 	private int prevBoredom;
 	private int prevDirty;
@@ -23,6 +24,10 @@ public class VirtualPet {
 		return dirty;
 	}
 
+	public String getDirectory() {
+		return directory;
+	}
+	
 	public int getPrevBoredom() {
 		return prevBoredom;
 	}
@@ -65,11 +70,16 @@ public class VirtualPet {
 
 	// special methods
 	public String barMaker(int stat) {
+		String littleSpaces;
 		int activeBars = Math.round(stat/75);
 		int inactiveBars = Math.round((1500-stat)/75);
 		int percent = Math.round(stat/15);
 		String littleTicks = new String(new char[activeBars]).replace("\0", "-");
-		String littleSpaces = new String(new char[inactiveBars]).replace("\0", " ");
+		if (inactiveBars <1) {
+			littleSpaces = "";
+		} else {
+		littleSpaces = new String(new char[inactiveBars]).replace("\0", " ");
+		}
 		String statusBar = "|" + littleTicks + littleSpaces + "| " + percent + "%";
 		return statusBar;
 	}
