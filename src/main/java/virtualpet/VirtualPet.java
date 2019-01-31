@@ -1,10 +1,11 @@
 package virtualpet;
 
-public class VirtualPet {
+public abstract class VirtualPet {
 	// Properties
 	private String nameRaw;
 	private int boredom;
 	private int dirty;
+	private String directory = System.getProperty("user.dir").replace("\\", "\\\\");
 
 	private int prevBoredom;
 	private int prevDirty;
@@ -23,6 +24,10 @@ public class VirtualPet {
 		return dirty;
 	}
 
+	public String getDirectory() {
+		return directory;
+	}
+	
 	public int getPrevBoredom() {
 		return prevBoredom;
 	}

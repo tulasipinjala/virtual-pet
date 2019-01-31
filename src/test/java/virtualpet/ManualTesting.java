@@ -8,8 +8,6 @@ public class ManualTesting {
 		MakeSound.playSound("C:\\Users\\WeCanCodeIT\\wcci\\default-workspace\\virtual-pet\\soundfiles\\bulbasaur.wav");
 		String directory = System.getProperty("user.dir").replace("\\", "\\\\");
 		MakeSound.playSound(directory + "\\soundfiles\\" + "bulbasaur" + ".wav");
-		System.out.println("Working Directory = " +
-	              System.getProperty("user.dir"));
 		
 		Scanner input = new Scanner(System.in);
 		//dog 
