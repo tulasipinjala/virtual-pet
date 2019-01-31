@@ -21,10 +21,11 @@ public class Robotic extends VirtualPet {
 	}
 
 	public void getStatusChange() {
-		System.out.println(getName() + "\n Charge \t" + prevCharge + "\t" + "=>" + "\t" + charge + "\n Boredom \t"
-				+ getPrevBoredom() + "\t" + "=>" + "\t" + getBoredom() + "\n Fragmentation \t" + prevFragmentation
-				+ "\t" + "=>" + "\t" + fragmentation + "\n Dirty \t\t" + getPrevDirty() + "\t" + "=>" + "\t"
-				+ getDirty());
+		System.out.println(getName() 
+				+ "\n Charge \t" + barMaker(charge) 
+				+ "\n Boredom \t" + barMaker(getBoredom())
+				+ "\n Fragmentation \t" + barMaker(fragmentation)
+				+ "\n Dirty \t\t" + barMaker(getDirty())); 
 	}
 
 	// constructor

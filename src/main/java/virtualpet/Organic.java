@@ -28,10 +28,12 @@ public class Organic extends VirtualPet {
 	}
 
 	public void getStatusChange() {
-		System.out.println(getName() + "\n Hunger \t" + prevHunger + "\t" + "=>" + "\t" + hunger + "\n Boredom \t"
-				+ getPrevBoredom() + "\t" + "=>" + "\t" + getBoredom() + "\n Health \t" + prevHealth + "\t" + "=>" + "\t" + health
-				+ "\n Dirty \t\t" + getPrevDirty() + "\t" + "=>" + "\t" + getDirty() + "\n Thirst \t" + prevThirst + "\t" + "=>"
-				+ "\t" + thirst);
+		System.out.println(getName() 
+				+ "\n Hunger \t" + barMaker(hunger) 
+				+ "\n Boredom \t" + barMaker(getBoredom())
+				+ "\n Health \t" + barMaker(health)
+				+ "\n Dirty \t\t" + barMaker(getDirty()) 
+				+ "\n Thirst \t" + barMaker(thirst));
 	}
 
 
