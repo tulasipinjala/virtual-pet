@@ -65,11 +65,16 @@ public class VirtualPet {
 
 	// special methods
 	public String barMaker(int stat) {
+		String littleSpaces;
 		int activeBars = Math.round(stat/75);
 		int inactiveBars = Math.round((1500-stat)/75);
 		int percent = Math.round(stat/15);
 		String littleTicks = new String(new char[activeBars]).replace("\0", "-");
-		String littleSpaces = new String(new char[inactiveBars]).replace("\0", " ");
+		if (inactiveBars <1) {
+			littleSpaces = "";
+		} else {
+		littleSpaces = new String(new char[inactiveBars]).replace("\0", " ");
+		}
 		String statusBar = "|" + littleTicks + littleSpaces + "| " + percent + "%";
 		return statusBar;
 	}
