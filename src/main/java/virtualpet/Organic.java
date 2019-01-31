@@ -1,5 +1,6 @@
 package virtualpet;
 
+import java.io.File;
 import java.util.Random;
 
 public class Organic extends VirtualPet {
@@ -75,7 +76,7 @@ public class Organic extends VirtualPet {
 	}
 	
 	public void roar() {
-		MakeSound.playSound(getDirectory() + "\\soundfiles\\" + soundOrganic + ".wav");
+		MakeSound.playSound(getDirectory() + File.separator + "soundfiles" + File.separator + soundOrganic + ".wav");
 	}
 	
 	public void updatePrevProperties() {
@@ -87,7 +88,7 @@ public class Organic extends VirtualPet {
 	}
 	
 	public static String getRandomSound() {
-		String[] soundNames = {"bulbasaur","charmander","squirtle","caterpie", "pikachu", "weedle"};
+		String[] soundNames = {"dog","dolphin","hawk","lion", "wolf"};
 	    int rnd = new Random().nextInt(soundNames.length);
 	    return soundNames[rnd];
 	}

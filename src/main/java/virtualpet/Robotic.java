@@ -1,5 +1,6 @@
 package virtualpet;
 
+import java.io.File;
 import java.util.Random;
 
 public class Robotic extends VirtualPet {
@@ -64,7 +65,7 @@ public class Robotic extends VirtualPet {
 	}
 	
 	public void soundEffect() {
-		MakeSound.playSound(getDirectory() + "\\soundfiles\\" + soundRobotic + ".wav");
+		MakeSound.playSound(getDirectory() + File.separator + "soundfiles" + File.separator + soundRobotic + ".wav");
 	}
 	
 	public void updatePrevProperties() {
