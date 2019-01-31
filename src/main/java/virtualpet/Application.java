@@ -23,7 +23,7 @@ public class Application {
 		String commands = "Commands\n" + " 1. Feed <petname><all>\t\t- feeds your Organic pet\n"
 				+ " 2. Play <petname><all>\t\t- plays with your pet\n"
 				+ " 3. Checkup <petname><all>\t- Takes your Organic pet to the vet to improve health\n"
-				+ " 4. Clean <petname><all>\t- Cleans your pet\n"
+				+ " 4. Clean <petname><all><cages>\t- Clean your pet, all pets,  or their cages. This will keep your pets healthy.\n"
 				+ " 5. Water <petname><all>\t- Give your Organic pet water\n"
 				+ " 6. Plugin <petname><all>\t- Charge Robotic pet\n"
 				+ " 7. Defrag <petname><all>\t- Defrag Robotic pet\n" 
@@ -77,14 +77,14 @@ public class Application {
 
 				if (userPetChoice.equalsIgnoreCase("all")) {
 					virtualPetShelter.tickAll(20);
-					virtualPetShelter.cleanAll();
+					virtualPetShelter.feedAll();
 				} else {
 					virtualPetShelter.tickAll(10);
 					((Organic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).feed();
 				}
 
 				virtualPetShelter.statusChangeAll();
-			} else if (userAction.equalsIgnoreCase("clean") || userAction.equalsIgnoreCase("2")) {
+			} else if (userAction.equalsIgnoreCase("clean") || userAction.equalsIgnoreCase("4")) {
 				userPetChoice = chooseAPet(input, virtualPetShelter, userPetChoice, userInputSplit);
 				endTime = System.nanoTime();
 				timeElapsed = (endTime - startTime) / 1000000000;
@@ -93,6 +93,9 @@ public class Application {
 				if (userPetChoice.equalsIgnoreCase("all")) {
 					virtualPetShelter.tickAll(20);
 					virtualPetShelter.cleanAll();
+				} else if (userPetChoice.equalsIgnoreCase("cages")) {
+					virtualPetShelter.tickAll(20);
+					virtualPetShelter.cleanCage();
 				} else {
 					virtualPetShelter.tickAll(10);
 					virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice)).clean();
@@ -107,7 +110,7 @@ public class Application {
 
 				if (userPetChoice.equalsIgnoreCase("all")) {
 					virtualPetShelter.tickAll(20);
-					virtualPetShelter.cleanAll();
+					virtualPetShelter.checkupAll();
 				} else {
 					virtualPetShelter.tickAll(10);
 					((Organic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).checkup();
@@ -234,7 +237,7 @@ public class Application {
 		}
 		
 		while (!(virtualPetShelter.getVirtualPets().containsKey(printCapitalizedVersion(userPetChoice))
-				|| userPetChoice.equalsIgnoreCase("all"))) {
+				|| userPetChoice.equalsIgnoreCase("all") || userPetChoice.equalsIgnoreCase("cages"))) {
 			System.out.println("Hey! Type a name from the list! Which pet?");
 			virtualPetShelter.nameAll();
 			System.out.println("");

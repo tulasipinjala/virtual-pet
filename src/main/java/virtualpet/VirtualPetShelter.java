@@ -32,6 +32,10 @@ public class VirtualPetShelter {
 	}
 
 	// Method
+public void cleanCage() {
+		cageCleanliness = 1500;
+	}
+	
 	public void addVirtualPet(VirtualPet petToAdd) {
 		petList.put(petToAdd.getName(), petToAdd);
 	}
@@ -196,4 +200,5 @@ public class VirtualPetShelter {
 			System.out.println();
 		}
 	}
+	
 }
