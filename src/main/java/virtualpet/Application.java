@@ -45,11 +45,12 @@ public class Application {
 		}
 		System.out.println("Is your pet Organic or Robotic?");
 		String userType = input.nextLine();
-		userType = createPet(input, virtualPetShelter, userInput, userType);
+		userType = typeGuesser(userType, input);
+		createPet(input, virtualPetShelter, userInput, userType);
 		// Displays initial pet's name
 		System.out.println(
 				"Your pet's name is " + virtualPetShelter.getPet(printCapitalizedVersion(userInput)).getName());
-		
+
 		// Action 'while' loop
 		while (true) {
 			System.out.println("What would you like to do?");
@@ -71,7 +72,7 @@ public class Application {
 				}
 				userPetChoice = printCapitalizedVersion(longPetname);
 			}
-			
+
 			if (userAction.equalsIgnoreCase("clean") || userAction.equalsIgnoreCase("1")) {
 				userPetChoice = chooseAPetCage(input, virtualPetShelter, userPetChoice, userInputSplit);
 				endTime = System.nanoTime();
@@ -87,7 +88,7 @@ public class Application {
 				} else {
 					virtualPetShelter.tickAll(10);
 					virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice)).clean();
-					
+
 				}
 
 				virtualPetShelter.statusChangeAll();
@@ -187,7 +188,7 @@ public class Application {
 				System.out.println("Is your pet Organic or Robotic?");
 				userType = input.nextLine();
 
-				userType = createPet(input, virtualPetShelter, userInput, userType);
+				createPet(input, virtualPetShelter, userInput, userType);
 
 				virtualPetShelter.statusChangeAll();
 			} else if (userAction.equalsIgnoreCase("adopt") || userAction.equalsIgnoreCase("9")) {
@@ -215,30 +216,22 @@ public class Application {
 			virtualPetShelter.updatePrevPropertiesAll();
 		}
 	}
-	public void x ( VirtualPet time ) {
-	     
-		((Organic)time).tick(time);
-		
-    }
 
-	private static String createPet(Scanner input, VirtualPetShelter virtualPetShelter, String userInput,
-			String userType) {
-		while (true) {
-			if (userType.equalsIgnoreCase("Organic")) {
-				virtualPetShelter.addVirtualPet(new Organic(userInput));
-				break;
-			} else if (userType.equalsIgnoreCase("Robotic")) {
-				virtualPetShelter.addVirtualPet(new Robotic(userInput));
-				break;
-			} else {
-				System.out.println("Please try again. Is your pet Organic or Robotic?");
-				userType = input.nextLine();
-			}
-		}
-		return userType;
+	public void x(VirtualPet time) {
+
+		((Organic) time).tick(time);
+
 	}
 
-	
+	private static void createPet(Scanner input, VirtualPetShelter virtualPetShelter, String userInput,
+			String userType) {
+		if (userType.equalsIgnoreCase("Organic")) {
+			virtualPetShelter.addVirtualPet(new Organic(userInput));
+		} else {
+			virtualPetShelter.addVirtualPet(new Robotic(userInput));
+		}
+	}
+
 	private static String chooseAPet(Scanner input, VirtualPetShelter virtualPetShelter, String userPetChoice,
 			String[] userInputSplit) {
 		if (userInputSplit.length == 1) {
@@ -347,5 +340,24 @@ public class Application {
 			}
 			return longName;
 		}
+	}
+
+	public static String typeGuesser(String userType, Scanner input) {
+		int organicGuess = Levenshtein.calculate(printCapitalizedVersion(userType), "Organic");
+		int roboticGuess = Levenshtein.calculate(printCapitalizedVersion(userType), "Robotic");
+		String guess;
+		while (true) {
+			if (organicGuess > roboticGuess) {
+				guess = "Organic";
+				break;
+			} else if (organicGuess < roboticGuess) {
+				guess = "Robotic";
+				break;
+			} else {
+				System.out.println("Please try again. Is your pet Organic or Robotic?");
+				userType = input.nextLine();
+			}
+		}
+		return guess;
 	}
 }
