@@ -187,7 +187,8 @@ public class Application {
 				userInput = input.nextLine();
 				System.out.println("Is your pet Organic or Robotic?");
 				userType = input.nextLine();
-
+				userType = typeGuesser(userType, input);
+				
 				createPet(input, virtualPetShelter, userInput, userType);
 
 				virtualPetShelter.statusChangeAll();
