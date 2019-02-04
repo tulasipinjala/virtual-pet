@@ -15,7 +15,7 @@ public class VirtualPetTest {
 
 	@Test
 	public void shouldReturnIntialHungerAsOneHundred() {
-		VirtualPet dog = new VirtualPet("Lassie");
+		VirtualPet dog = new ("Lassie");
 		int hungerValue = dog.getHunger();
 		Assert.assertEquals(hungerValue, 100);	
 	}

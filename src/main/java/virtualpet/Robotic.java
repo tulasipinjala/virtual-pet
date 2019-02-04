@@ -49,9 +49,12 @@ public class Robotic extends VirtualPet {
 		fragmentation -= time;
 		charge -= time;
 
-		if (charge < 0 || getBoredom() < 0 || fragmentation < 0 || getDirty() < 0) {
+		if (charge < 50 || getBoredom() < 50 || fragmentation < 50 || getDirty() < 50) {
 			System.out.println("Your pet has fainted");
 			System.exit(0);
+		} else if (charge <= 0 || getBoredom() <= 0 || fragmentation <= 50 || getDirty() <= 50) {
+				System.out.println("Your pet has died");
+				System.exit(0);
 		}
 	}
 

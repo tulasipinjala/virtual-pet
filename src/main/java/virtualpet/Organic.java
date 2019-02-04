@@ -57,8 +57,11 @@ public class Organic extends VirtualPet {
 		health -= time;
 		thirst -= time;
 		
-		if (hunger < 0 || getBoredom() < 0 || health < 0 || thirst < 0|| getDirty() < 0) {
+		if (hunger < 50 || getBoredom() < 50 || health < 50  || thirst < 50|| getDirty() < 50) {
 			System.out.println("Your pet has fainted");
+			System.exit(0);
+		}else if (hunger <= 0 || getBoredom() <= 0 || health <= 0 || thirst <= 0|| getDirty() <= 0) {
+			System.out.println("Your pet has died");
 			System.exit(0);
 		}
 	}
@@ -90,6 +93,11 @@ public class Organic extends VirtualPet {
 		String[] soundNames = {"bulbasaur","charmander","squirtle","caterpie", "pikachu", "weedle"};
 	    int rnd = new Random().nextInt(soundNames.length);
 	    return soundNames[rnd];
+	}
+
+	public void tick(VirtualPet time) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

@@ -3,6 +3,8 @@ package virtualpet;
 import java.util.Collection;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Application {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
@@ -20,19 +22,18 @@ public class Application {
 		String intro = "Pet types \n" + " Organic - choosing an animal pet\n" + " Robotic - choosing a robot pet\n\n"
 				+ "WARNING" + " If you let any of the pet's properties go to zero, it will be adopted by Mr. Reaper.";
 
-		String commands = "Commands\n" 
+		String commands = "Commands\n"
 				+ " 1. Clean <petname><all><cages>\t- Clean your pet, all pets, or their cages. This will keep your pets clean and healthy.\n"
 				+ " 2. Play <petname><all>\t\t- Plays with all of your pets\n"
 				+ " 3. Checkup <petname><all>\t- Takes your Organic pet to the vet to improve health\n"
 				+ " 4. Feed <petname><all>\t\t- Feeds your Organic pet\n"
 				+ " 5. Water <petname><all>\t- Give your Organic pet water\n"
 				+ " 6. Plugin <petname><all>\t- Charge Robotic pet\n"
-				+ " 7. Defrag <petname><all>\t- Defrag Robotic pet\n" 
-				+ " 8. Add <petname>\t\t- Admit a new pet\n"
+				+ " 7. Defrag <petname><all>\t- Defrag Robotic pet\n" + " 8. Add <petname>\t\t- Admit a new pet\n"
 				+ " 9. Adopt <petname>\t\t- This removes your pet from the shelter. THIS WILL BE PERMANENT.\n"
-				+ " 0. List \t\t\t- Displays all pets and their stats.\n"
-				+ " Exit \t\t\t\t- Exits VPet";
-		// Chooses a pet name. Choose if your pet is Organic or Robotic. Also allows user to choose help to find a list of commands
+				+ " 0. List \t\t\t- Displays all pets and their stats.\n" + " Exit \t\t\t\t- Exits VPet";
+		// Chooses a pet name. Choose if your pet is Organic or Robotic. Also allows
+		// user to choose help to find a list of commands
 		System.out.println("Please type in your first pet's name. Type \"help\" for list of commands.");
 		String userInput = input.nextLine();
 
@@ -45,10 +46,10 @@ public class Application {
 		System.out.println("Is your pet Organic or Robotic?");
 		String userType = input.nextLine();
 		userType = createPet(input, virtualPetShelter, userInput, userType);
-		//Displays initial pet's name
+		// Displays initial pet's name
 		System.out.println(
 				"Your pet's name is " + virtualPetShelter.getPet(printCapitalizedVersion(userInput)).getName());
-
+		
 		// Action 'while' loop
 		while (true) {
 			System.out.println("What would you like to do?");
@@ -70,7 +71,7 @@ public class Application {
 				}
 				userPetChoice = printCapitalizedVersion(longPetname);
 			}
-
+			
 			if (userAction.equalsIgnoreCase("clean") || userAction.equalsIgnoreCase("1")) {
 				userPetChoice = chooseAPetCage(input, virtualPetShelter, userPetChoice, userInputSplit);
 				endTime = System.nanoTime();
@@ -86,6 +87,7 @@ public class Application {
 				} else {
 					virtualPetShelter.tickAll(10);
 					virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice)).clean();
+					
 				}
 
 				virtualPetShelter.statusChangeAll();
@@ -134,7 +136,7 @@ public class Application {
 				}
 
 				virtualPetShelter.statusChangeAll();
-			}  else if (userAction.equalsIgnoreCase("water") || userAction.equalsIgnoreCase("5")) {
+			} else if (userAction.equalsIgnoreCase("water") || userAction.equalsIgnoreCase("5")) {
 				userPetChoice = chooseAOrganicPet(input, virtualPetShelter, userPetChoice, userInputSplit);
 				endTime = System.nanoTime();
 				timeElapsed = (endTime - startTime) / 1000000000;
@@ -186,7 +188,7 @@ public class Application {
 				userType = input.nextLine();
 
 				userType = createPet(input, virtualPetShelter, userInput, userType);
-				
+
 				virtualPetShelter.statusChangeAll();
 			} else if (userAction.equalsIgnoreCase("adopt") || userAction.equalsIgnoreCase("9")) {
 				userPetChoice = chooseAPetToAdopt(input, virtualPetShelter, userPetChoice, userInputSplit);
@@ -213,6 +215,11 @@ public class Application {
 			virtualPetShelter.updatePrevPropertiesAll();
 		}
 	}
+	public void x ( VirtualPet time ) {
+	     
+		((Organic)time).tick(time);
+		
+    }
 
 	private static String createPet(Scanner input, VirtualPetShelter virtualPetShelter, String userInput,
 			String userType) {
@@ -231,6 +238,7 @@ public class Application {
 		return userType;
 	}
 
+	
 	private static String chooseAPet(Scanner input, VirtualPetShelter virtualPetShelter, String userPetChoice,
 			String[] userInputSplit) {
 		if (userInputSplit.length == 1) {
@@ -239,7 +247,7 @@ public class Application {
 			System.out.println("");
 			userPetChoice = input.nextLine();
 		}
-		
+
 		while (!(virtualPetShelter.getVirtualPets().containsKey(printCapitalizedVersion(userPetChoice))
 				|| userPetChoice.equalsIgnoreCase("all"))) {
 			System.out.println("Hey! Type a name from the list! Which pet?");
@@ -249,7 +257,7 @@ public class Application {
 		}
 		return userPetChoice;
 	}
-	
+
 	private static String chooseAPetCage(Scanner input, VirtualPetShelter virtualPetShelter, String userPetChoice,
 			String[] userInputSplit) {
 		if (userInputSplit.length == 1) {
@@ -259,11 +267,9 @@ public class Application {
 			System.out.println("");
 			userPetChoice = input.nextLine();
 		}
-		
+
 		while (!(virtualPetShelter.getVirtualPets().containsKey(printCapitalizedVersion(userPetChoice))
 				|| userPetChoice.equalsIgnoreCase("all") || userPetChoice.equalsIgnoreCase("cages"))) {
-			System.out.println("Hey! Type a name from the list! Which pet? Or cages.");
-			virtualPetShelter.nameAll();
 			System.out.println("Cages");
 			System.out.println("");
 			userPetChoice = input.nextLine();
@@ -279,7 +285,7 @@ public class Application {
 			System.out.println("");
 			userPetChoice = input.nextLine();
 		}
-		
+
 		while (!(virtualPetShelter.getVirtualPets().containsKey(printCapitalizedVersion(userPetChoice)))) {
 			System.out.println("Hey! Type a name from the list! Which pet?");
 			virtualPetShelter.nameAll();
@@ -288,6 +294,7 @@ public class Application {
 		}
 		return userPetChoice;
 	}
+
 	private static String chooseAOrganicPet(Scanner input, VirtualPetShelter virtualPetShelter, String userPetChoice,
 			String[] userInputSplit) {
 		if (userInputSplit.length == 1) {

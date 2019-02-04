@@ -10,6 +10,7 @@ public abstract class VirtualPet {
 	private int prevBoredom;
 	private int prevDirty;
 	private String name;
+	public boolean Organic;
 
 	// Accessor method
 	public String getName() {
@@ -61,6 +62,7 @@ public abstract class VirtualPet {
 		dirty += 500;
 	}
 
+	
 	public void updatePrevProperties() {
 		
 		prevBoredom = boredom;

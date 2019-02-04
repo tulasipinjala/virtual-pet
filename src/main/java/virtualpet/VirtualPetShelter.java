@@ -32,10 +32,10 @@ public class VirtualPetShelter {
 	}
 
 	// Method
-public void cleanCage() {
+	public void cleanCage() {
 		cageCleanliness = 1500;
 	}
-	
+
 	public void addVirtualPet(VirtualPet petToAdd) {
 		petList.put(petToAdd.getName(), petToAdd);
 	}
@@ -168,10 +168,10 @@ public void cleanCage() {
 		List<VirtualPet> petsByName = new ArrayList<>(petList.values());
 
 		Collections.sort(petsByName, Comparator.comparing(VirtualPet::getName));
-		
-		Boolean noneCheckOrganic = true; 
+
+		Boolean noneCheckOrganic = true;
 		Boolean noneCheckRobotic = true;
-		
+
 		System.out.println("Cage Cleanliness is at " + cageCleanliness);
 		System.out.println();
 		System.out.println("Organic:");
@@ -187,7 +187,7 @@ public void cleanCage() {
 			System.out.println("none");
 			System.out.println();
 		}
-		
+
 		System.out.println("Robotic:");
 		for (VirtualPet specificPet : petsByName) {
 			if (specificPet instanceof Robotic) {
@@ -202,5 +202,5 @@ public void cleanCage() {
 			System.out.println();
 		}
 	}
-	
+
 }
