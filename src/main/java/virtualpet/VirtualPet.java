@@ -75,7 +75,7 @@ public abstract class VirtualPet {
 		int inactiveBars = 20 - activeBars;
 		int percent = Math.round(stat / 15);
 		String littleTicks = new String(new char[activeBars]).replace("\0", "-");
-		if (inactiveBars == 0) {
+		if (inactiveBars <= 0) {
 			littleSpaces = "";
 		} else {
 			littleSpaces = new String(new char[inactiveBars]).replace("\0", " ");
