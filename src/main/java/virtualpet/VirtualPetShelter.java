@@ -163,6 +163,13 @@ public class VirtualPetShelter {
 			}
 		}
 	}
+	public void checkAll() { //we still need to add this to Application and robotic and we also need to add the death check
+		for (VirtualPet specificPet : petList.values()) {
+			if (specificPet instanceof Organic) {
+				((Organic) specificPet).checkLowValue(); 
+			}
+		}
+	}
 
 	public void statusChangeAll() {
 		List<VirtualPet> petsByName = new ArrayList<>(petList.values());

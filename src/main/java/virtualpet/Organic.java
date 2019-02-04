@@ -8,7 +8,8 @@ public class Organic extends VirtualPet {
 	private int health;
 	private int thirst;
 	private String soundOrganic;
-
+	private boolean deathFlag; //default is false
+	
 	private int prevHunger;
 	private int prevHealth;
 	private int prevThirst;
@@ -32,10 +33,10 @@ public class Organic extends VirtualPet {
 
 	public void getStatusChange() {
 		System.out.println(getName() 
-				+ "\n Hunger \t" + barMaker(hunger) 
+				+ "\n Dirty \t\t" + barMaker(getDirty()) 
 				+ "\n Boredom \t" + barMaker(getBoredom())
 				+ "\n Health \t" + barMaker(health)
-				+ "\n Dirty \t\t" + barMaker(getDirty()) 
+				+ "\n Hunger \t" + barMaker(hunger) 
 				+ "\n Thirst \t" + barMaker(thirst));
 	}
 
@@ -58,13 +59,7 @@ public class Organic extends VirtualPet {
 		health -= time;
 		thirst -= time;
 		
-		if (hunger < 50 || getBoredom() < 50 || health < 50  || thirst < 50|| getDirty() < 50) {
-			System.out.println("Your pet has fainted");
-			System.exit(0);
-		}else if (hunger <= 0 || getBoredom() <= 0 || health <= 0 || thirst <= 0|| getDirty() <= 0) {
-			System.out.println("Your pet has died");
-			System.exit(0);
-		}
+		
 	}
 	public void feed() { // Increase distance from 0 hunger
 		hunger += 500;
@@ -98,9 +93,45 @@ public class Organic extends VirtualPet {
 	    return soundNames[rnd];
 	}
 
-	public void tick(VirtualPet time) {
-		// TODO Auto-generated method stub
-		
+	public void checkLowValue() {
+		int warningIndex = 300;
+		boolean dirtyFlag = (getDirty() < warningIndex);
+		boolean boredomFlag = (getBoredom() < warningIndex);
+		boolean healthFlag = (health < warningIndex); 
+		boolean hungerFlag = (hunger < warningIndex);
+		boolean thirstFlag = (thirst < warningIndex);
+		String warningList = "";
+		boolean notFirstCounter = false;
+		if (dirtyFlag) {
+			warningList = warningList + "Dirty";
+			notFirstCounter = true;
+		}
+		if (boredomFlag) {
+			if (notFirstCounter) warningList = warningList + " , ";
+			warningList = warningList + "Boredom";
+			notFirstCounter = true;
+		}
+		if (healthFlag) {
+			if (notFirstCounter) warningList = warningList + " , ";
+			warningList = warningList + "Health";
+			notFirstCounter = true;
+		}
+		if (hungerFlag) {
+			if (notFirstCounter) warningList = warningList + " , ";
+			warningList = warningList + "Hunger";
+			notFirstCounter = true;
+		}
+		if (thirstFlag) {
+			if (notFirstCounter) warningList = warningList + " , ";
+			warningList = warningList + "Thirst";
+			notFirstCounter = true;
+		}
+		if (getDirty() <= 0 || getBoredom() <= 0 ||  health <= 0 || hunger <= 0 ||  thirst <= 0) {
+		System.out.println(getName() + " has been adopted by the Grim Reaper.");
+		deathFlag = true;
+		}else if (dirtyFlag || boredomFlag || healthFlag  || hungerFlag|| thirstFlag) {
+		System.out.println(getName() + " is low on: " + warningList);
+		}
 	}
 
 

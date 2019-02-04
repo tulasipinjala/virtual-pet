@@ -78,6 +78,8 @@ public abstract class VirtualPet {
 		}
 		return value;
 	}
+	
+	
 
 	// special methods
 	public String barMaker(int stat) {
