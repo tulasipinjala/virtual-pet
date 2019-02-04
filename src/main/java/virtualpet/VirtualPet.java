@@ -28,7 +28,7 @@ public abstract class VirtualPet {
 	public String getDirectory() {
 		return directory;
 	}
-	
+
 	public int getPrevBoredom() {
 		return prevBoredom;
 	}
@@ -64,28 +64,32 @@ public abstract class VirtualPet {
 
 	
 	public void updatePrevProperties() {
-		
+
 		prevBoredom = boredom;
 		prevDirty = dirty;
-		
+
 	}
 
 	// special methods
 	public String barMaker(int stat) {
 		String littleSpaces;
-		int activeBars = Math.round(stat/75);
-		int inactiveBars = Math.round((1500-stat)/75);
-		int percent = Math.round(stat/15);
+		int activeBars = Math.round(stat / 75);
+		int inactiveBars = 20 - activeBars;
+		int percent = Math.round(stat / 15);
 		String littleTicks = new String(new char[activeBars]).replace("\0", "-");
-		if (inactiveBars <1) {
+<<<<<<< Updated upstream
+		if (inactiveBars <= 0) {
+=======
+		if (inactiveBars == 0) {
+>>>>>>> Stashed changes
 			littleSpaces = "";
 		} else {
-		littleSpaces = new String(new char[inactiveBars]).replace("\0", " ");
+			littleSpaces = new String(new char[inactiveBars]).replace("\0", " ");
 		}
 		String statusBar = "|" + littleTicks + littleSpaces + "| " + percent + "%";
 		return statusBar;
 	}
-	
+
 	private static String printCapitalizedVersion(String message) {
 		String[] messageSplit = message.trim().split("\\s+");
 		if (messageSplit.length == 1) {
