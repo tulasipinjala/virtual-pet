@@ -68,6 +68,7 @@ public class Organic extends VirtualPet {
 	}
 	public void feed() { // Increase distance from 0 hunger
 		hunger += 500;
+		hunger = enforceMaxValue(hunger);
 	}
 	
 	public void checkup() { // Increase distance from 0 health
@@ -76,6 +77,7 @@ public class Organic extends VirtualPet {
 	
 	public void water() { // Increase distance from 0 dirty
 		thirst += 500;
+		thirst = enforceMaxValue(thirst);
 	}
 	
 	public void roar() {

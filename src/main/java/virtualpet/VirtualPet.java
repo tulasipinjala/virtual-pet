@@ -56,10 +56,12 @@ public abstract class VirtualPet {
 
 	public void play() { // Must play with your pet
 		boredom += 500;
+		boredom = enforceMaxValue(boredom);
 	}
 
 	public void clean() { // Increase distance from 0 dirty
 		dirty += 500;
+		dirty = enforceMaxValue(dirty);
 	}
 
 	
@@ -68,6 +70,13 @@ public abstract class VirtualPet {
 		prevBoredom = boredom;
 		prevDirty = dirty;
 
+	}
+	
+	public int enforceMaxValue(int value) {
+		if (value > 1500) {
+			value = 1500;
+		}
+		return value;
 	}
 
 	// special methods
@@ -78,7 +87,7 @@ public abstract class VirtualPet {
 		int percent = Math.round(stat / 15);
 		String littleTicks = new String(new char[activeBars]).replace("\0", "-");
 
-		if (inactiveBars == 0) {
+		if (inactiveBars <= 0) {
 			littleSpaces = "";
 		} else {
 			littleSpaces = new String(new char[inactiveBars]).replace("\0", " ");

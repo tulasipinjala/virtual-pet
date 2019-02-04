@@ -61,6 +61,7 @@ public class Robotic extends VirtualPet {
 
 	public void plugin() { // Increase distance from 0 health
 		charge += 500;
+		charge = enforceMaxValue(charge);
 	}
 
 	public void defrag() { // Increase distance from 0 dirty
