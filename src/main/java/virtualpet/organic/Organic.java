@@ -1,8 +1,9 @@
-package virtualpet;
+package virtualpet.organic;
 
 import java.io.File;
 import java.util.Random;
 
+import virtualpet.VirtualPet;
 import virtualpet.extras.MakeSound;
 
 public class Organic extends VirtualPet {

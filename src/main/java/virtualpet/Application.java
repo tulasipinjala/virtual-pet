@@ -6,6 +6,10 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 import virtualpet.extras.Levenshtein;
+import virtualpet.organic.Organic;
+import virtualpet.robotic.Bulbasaur;
+import virtualpet.robotic.Charmander;
+import virtualpet.robotic.Robotic;
 
 public class Application {
 	public static void main(String[] args) {
@@ -14,6 +18,7 @@ public class Application {
 		long startTime;
 		long endTime;
 		long timeElapsed;
+		String userPetCreate = "";
 		String userAction;
 		String userPetChoice;
 		String[] userInputSplit;
@@ -48,7 +53,18 @@ public class Application {
 		System.out.println("Is your pet Organic or Robotic?");
 		String userType = input.nextLine();
 		userType = typeGuesser(userType, input);
-		createPet(input, virtualPetShelter, userInput, userType);
+
+		if (userType.equalsIgnoreCase("Robotic")) {
+			System.out.println("Which Robotic pet would you like?");
+			System.out.println("1. Bulbasaur");
+			System.out.println("2. Charmander");
+			System.out.println("3. Squirtle");
+			System.out.println("4. Caterpie");
+			System.out.println("5. Weedle");
+			System.out.println("6. Pikachu");
+			userPetCreate = input.nextLine();
+		}
+		createPet(input, virtualPetShelter, userInput, userPetCreate);
 		// Displays initial pet's name
 		System.out.println(
 				"Your pet's name is " + virtualPetShelter.getPet(printCapitalizedVersion(userInput)).getName());
@@ -221,11 +237,11 @@ public class Application {
 	}
 
 	private static void createPet(Scanner input, VirtualPetShelter virtualPetShelter, String userInput,
-			String userType) {
-		if (userType.equalsIgnoreCase("Organic")) {
-			virtualPetShelter.addVirtualPet(new Organic(userInput));
+			String userPetCreate) {
+		if (userPetCreate.equalsIgnoreCase("Bulbasaur")) {
+			virtualPetShelter.addVirtualPet(new Bulbasaur(userInput));
 		} else {
-			virtualPetShelter.addVirtualPet(new Robotic(userInput));
+			virtualPetShelter.addVirtualPet(new Charmander(userInput));
 		}
 	}
 
