@@ -9,6 +9,7 @@ import virtualpet.extras.Levenshtein;
 import virtualpet.organic.Organic;
 import virtualpet.robotic.Bulbasaur;
 import virtualpet.robotic.Charmander;
+
 import virtualpet.robotic.Robotic;
 
 public class Application {

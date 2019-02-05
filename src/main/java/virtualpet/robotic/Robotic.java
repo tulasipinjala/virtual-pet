@@ -6,6 +6,7 @@ import java.util.Random;
 import virtualpet.VirtualPet;
 import virtualpet.extras.MakeSound;
 
+
 public abstract class Robotic extends VirtualPet {
 	private int fragmentation;
 	private int charge;
@@ -71,11 +72,14 @@ public abstract class Robotic extends VirtualPet {
 		prevFragmentation = fragmentation;
 	}
 	
+
+	public static String getRandomSound() {
+		String[] soundNames = {"bulbasaur","charmander","squirtle","caterpie", "pikachu", "weedle"};
+	    int rnd = new Random().nextInt(soundNames.length);
+	    return soundNames[rnd];
+
 	public void setSound(String roboticType) { //setter for sounds
 		soundRobotic = roboticType;
-		
-		
-	    
 	}
 	
 	public void checkLowValue() {
