@@ -213,7 +213,7 @@ public class VirtualPetShelter {
 		Boolean noneCheckOrganic = true;
 		Boolean noneCheckRobotic = true;
 
-		System.out.println("Cage Cleanliness is at " + cageCleanliness);
+		System.out.println("Cage Cleanliness\t" + VirtualPet.barMaker(cageCleanliness));
 		System.out.println();
 		System.out.println("Organic:");
 		for (VirtualPet specificPet : petsByName) {

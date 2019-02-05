@@ -1,16 +1,22 @@
 package virtualpet;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 import javax.swing.JOptionPane;
 
 import virtualpet.extras.Levenshtein;
 import virtualpet.organic.Organic;
 import virtualpet.robotic.Bulbasaur;
+import virtualpet.robotic.Caterpie;
 import virtualpet.robotic.Charmander;
-
+import virtualpet.robotic.Pikachu;
 import virtualpet.robotic.Robotic;
+import virtualpet.robotic.Squirtle;
+import virtualpet.robotic.Weedle;
 
 public class Application {
 	public static void main(String[] args) {
@@ -55,16 +61,9 @@ public class Application {
 		String userType = input.nextLine();
 		userType = typeGuesser(userType, input);
 
-		if (userType.equalsIgnoreCase("Robotic")) {
-			System.out.println("Which Robotic pet would you like?");
-			System.out.println("1. Bulbasaur");
-			System.out.println("2. Charmander");
-			System.out.println("3. Squirtle");
-			System.out.println("4. Caterpie");
-			System.out.println("5. Weedle");
-			System.out.println("6. Pikachu");
-			userPetCreate = input.nextLine();
-		}
+		userPetCreate = choosePetSubclass(input, userPetCreate, userType);
+		
+		
 		createPet(input, virtualPetShelter, userInput, userPetCreate);
 		// Displays initial pet's name
 		System.out.println(
@@ -207,8 +206,9 @@ public class Application {
 				System.out.println("Is your pet Organic or Robotic?");
 				userType = input.nextLine();
 				userType = typeGuesser(userType, input);
-				
-				createPet(input, virtualPetShelter, userInput, userType);
+				userPetCreate = choosePetSubclass(input, userPetCreate, userType);
+
+				createPet(input, virtualPetShelter, userInput, userPetCreate);
 
 				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("adopt") || userAction.equalsIgnoreCase("9")) {
@@ -237,13 +237,84 @@ public class Application {
 		}
 	}
 
+	private static String choosePetSubclass(Scanner input, String userPetCreate, String userType) {
+		if (userType.equalsIgnoreCase("Robotic")) {
+			System.out.println("Which Robotic pet would you like?");
+			System.out.println("1. Bulbasaur");
+			System.out.println("2. Charmander");
+			System.out.println("3. Squirtle");
+			System.out.println("4. Caterpie");
+			System.out.println("5. Weedle");
+			System.out.println("6. Pikachu");
+			userPetCreate = printCapitalizedVersion(input.nextLine());
+			userPetCreate = roboticChoiceChecker(userPetCreate, input);
+		} else {
+			System.out.println("Which Robotic pet would you like?");
+			System.out.println("1. Bulbasaur");
+			System.out.println("2. Charmander");
+			System.out.println("3. Squirtle");
+			System.out.println("4. Caterpie");
+			System.out.println("5. Weedle");
+			
+		}
+		return userPetCreate;
+	}
+
+	private static String roboticChoiceChecker(String userPetCreate, Scanner input) {
+		Set<String> roboticList = new HashSet<String>(
+				Arrays.asList("Bulbasaur", "Charmander", "Squirtle", "Caterpie", "Weedle", "Pikachu"));
+
+		while (!roboticList.contains(userPetCreate)) {
+			switch (userPetCreate) {
+			case "1":
+				userPetCreate = "Bulbasaur";
+				break;
+			case "2":
+				userPetCreate = "Charmander";
+				break;
+			case "3":
+				userPetCreate = "Squirtle";
+				break;
+			case "4":
+				userPetCreate = "Caterpie";
+				break;
+			case "5":
+				userPetCreate = "Weedle";
+				break;
+			case "6":
+				userPetCreate = "Pikachu";
+				break;
+			}
+
+			if (!roboticList.contains(userPetCreate)) {
+				System.out.println("Please choose from list:");
+				System.out.println("1. Bulbasaur");
+				System.out.println("2. Charmander");
+				System.out.println("3. Squirtle");
+				System.out.println("4. Caterpie");
+				System.out.println("5. Weedle");
+				System.out.println("6. Pikachu");
+				userPetCreate = printCapitalizedVersion(input.nextLine());
+			}
+		}
+		return userPetCreate;
+	}
+
 	private static void createPet(Scanner input, VirtualPetShelter virtualPetShelter, String userInput,
 			String userPetCreate) {
 		if (userPetCreate.equalsIgnoreCase("Bulbasaur")) {
 			virtualPetShelter.addVirtualPet(new Bulbasaur(userInput));
-		} else {
+		} else if (userPetCreate.equalsIgnoreCase("Charmander")) {
 			virtualPetShelter.addVirtualPet(new Charmander(userInput));
-		}
+		} else if (userPetCreate.equalsIgnoreCase("Squirtle")) {
+			virtualPetShelter.addVirtualPet(new Squirtle(userInput));
+		} else if (userPetCreate.equalsIgnoreCase("Caterpie")) {
+			virtualPetShelter.addVirtualPet(new Caterpie(userInput));
+		} else if (userPetCreate.equalsIgnoreCase("Weedle")) {
+			virtualPetShelter.addVirtualPet(new Weedle(userInput));
+		} else if (userPetCreate.equalsIgnoreCase("Pikachu")) {
+			virtualPetShelter.addVirtualPet(new Pikachu(userInput));
+		} 
 	}
 
 	private static String chooseAPet(Scanner input, VirtualPetShelter virtualPetShelter, String userPetChoice,

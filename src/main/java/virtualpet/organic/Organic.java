@@ -35,7 +35,7 @@ public abstract class Organic extends VirtualPet {
 	}
 
 	public void getStatusChange() {
-		System.out.println(getName() 
+		System.out.println(getName() + " - " + getClass().getSimpleName()
 				+ "\n Dirty \t\t" + barMaker(getDirty()) 
 				+ "\n Boredom \t" + barMaker(getBoredom())
 				+ "\n Health \t" + barMaker(health)

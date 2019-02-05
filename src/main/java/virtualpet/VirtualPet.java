@@ -90,7 +90,7 @@ public abstract class VirtualPet {
 	
 
 	// special methods
-	public String barMaker(int stat) {
+	public static String barMaker(int stat) {
 		String littleSpaces;
 		int activeBars = Math.round(stat / 75);
 		int inactiveBars = 20 - activeBars;
