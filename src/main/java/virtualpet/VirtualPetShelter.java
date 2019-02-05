@@ -7,6 +7,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
+import virtualpet.organic.Organic;
+import virtualpet.robotic.Robotic;
+
 public class VirtualPetShelter {
 
 	private HashMap<String, VirtualPet> petList = new HashMap<String, VirtualPet>();
