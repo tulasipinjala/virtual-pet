@@ -218,12 +218,6 @@ public class Application {
 		}
 	}
 
-	public void x(VirtualPet time) {
-
-		((Organic) time).tick(time);
-
-	}
-
 	private static void createPet(Scanner input, VirtualPetShelter virtualPetShelter, String userInput,
 			String userType) {
 		if (userType.equalsIgnoreCase("Organic")) {
@@ -348,10 +342,10 @@ public class Application {
 		int roboticGuess = Levenshtein.calculate(printCapitalizedVersion(userType), "Robotic");
 		String guess;
 		while (true) {
-			if (organicGuess > roboticGuess) {
+			if (organicGuess < roboticGuess) {
 				guess = "Organic";
 				break;
-			} else if (organicGuess < roboticGuess) {
+			} else if (organicGuess > roboticGuess) {
 				guess = "Robotic";
 				break;
 			} else {
