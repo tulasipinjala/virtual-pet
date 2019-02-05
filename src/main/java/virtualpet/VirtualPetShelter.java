@@ -173,8 +173,8 @@ public class VirtualPetShelter {
 			if (specificPet instanceof Organic) {
 				((Organic) specificPet).checkLowValue();
 			}
-			if (specificPet instanceof Organic) {
-				((Organic) specificPet).checkLowValue();
+			if (specificPet instanceof Robotic) {
+				((Robotic) specificPet).checkLowValue();
 			}
 		}
 	}
