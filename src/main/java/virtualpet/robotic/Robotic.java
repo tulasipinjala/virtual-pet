@@ -77,6 +77,7 @@ public abstract class Robotic extends VirtualPet {
 		String[] soundNames = {"bulbasaur","charmander","squirtle","caterpie", "pikachu", "weedle"};
 	    int rnd = new Random().nextInt(soundNames.length);
 	    return soundNames[rnd];
+	}
 
 	public void setSound(String roboticType) { //setter for sounds
 		soundRobotic = roboticType;
