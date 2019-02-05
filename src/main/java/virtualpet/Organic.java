@@ -3,12 +3,14 @@ package virtualpet;
 import java.io.File;
 import java.util.Random;
 
+import virtualpet.extras.MakeSound;
+
 public class Organic extends VirtualPet {
 	private int hunger;
 	private int health;
 	private int thirst;
 	private String soundOrganic;
-	private boolean deathFlag; //default is false
+
 	
 	private int prevHunger;
 	private int prevHealth;
@@ -126,13 +128,16 @@ public class Organic extends VirtualPet {
 			warningList = warningList + "Thirst";
 			notFirstCounter = true;
 		}
-		if (getDirty() <= 0 || getBoredom() <= 0 ||  health <= 0 || hunger <= 0 ||  thirst <= 0) {
-		System.out.println(getName() + " has been adopted by the Grim Reaper.");
-		deathFlag = true;
-		}else if (dirtyFlag || boredomFlag || healthFlag  || hungerFlag|| thirstFlag) {
+		if (dirtyFlag || boredomFlag || healthFlag  || hungerFlag|| thirstFlag) {
 		System.out.println(getName() + " is low on: " + warningList);
 		}
 	}
-
+	
+	public void checkDeathValue() {
+		if (getDirty() <= 0 || getBoredom() <= 0 ||  health <= 0 || hunger <= 0 ||  thirst <= 0) {
+			System.out.println(getName() + " has been adopted by the Grim Reaper.");
+			super.die();
+		}
+	}
 
 }

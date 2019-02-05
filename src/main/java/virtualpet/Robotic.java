@@ -3,6 +3,8 @@ package virtualpet;
 import java.io.File;
 import java.util.Random;
 
+import virtualpet.extras.MakeSound;
+
 public class Robotic extends VirtualPet {
 	private int fragmentation;
 	private int charge;
@@ -45,18 +47,9 @@ public class Robotic extends VirtualPet {
 	}
 
 	public void tick(int time) {
-
 		super.tick(time);
 		fragmentation -= time;
 		charge -= time;
-
-		if (charge < 50 || getBoredom() < 50 || fragmentation < 50 || getDirty() < 50) {
-			System.out.println("Your pet has fainted");
-			System.exit(0);
-		} else if (charge <= 0 || getBoredom() <= 0 || fragmentation <= 50 || getDirty() <= 50) {
-				System.out.println("Your pet has died");
-				System.exit(0);
-		}
 	}
 
 	public void plugin() { // Increase distance from 0 health
@@ -82,5 +75,45 @@ public class Robotic extends VirtualPet {
 		String[] soundNames = {"bulbasaur","charmander","squirtle","caterpie", "pikachu", "weedle"};
 	    int rnd = new Random().nextInt(soundNames.length);
 	    return soundNames[rnd];
+	}
+	
+	public void checkLowValue() {
+		int warningIndex = 300;
+		boolean dirtyFlag = (getDirty() < warningIndex);
+		boolean boredomFlag = (getBoredom() < warningIndex);
+		boolean chargeFlag = (charge < warningIndex); 
+		boolean fragmentationFlag = (fragmentation < warningIndex);
+		String warningList = "";
+		boolean notFirstCounter = false;
+		if (dirtyFlag) {
+			warningList = warningList + "Dirty";
+			notFirstCounter = true;
+		}
+		if (boredomFlag) {
+			if (notFirstCounter) warningList = warningList + " , ";
+			warningList = warningList + "Boredom";
+			notFirstCounter = true;
+		}
+		if (chargeFlag) {
+			if (notFirstCounter) warningList = warningList + " , ";
+			warningList = warningList + "Charge";
+			notFirstCounter = true;
+		}
+		if (fragmentationFlag) {
+			if (notFirstCounter) warningList = warningList + " , ";
+			warningList = warningList + "Fragmentation";
+			notFirstCounter = true;
+		}
+
+		if (dirtyFlag || boredomFlag || chargeFlag|| fragmentationFlag) {
+		System.out.println(getName() + " is low on: " + warningList);
+		}
+	}
+	
+	public void checkDeathValue() {
+		if (getDirty() <= 0 || getBoredom() <= 0 ||  charge <= 0 || fragmentation <= 0) {
+			System.out.println(getName() + " has been adopted by the Terminator.");
+			super.die();
+		}
 	}
 }

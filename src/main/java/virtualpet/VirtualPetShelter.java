@@ -163,10 +163,41 @@ public class VirtualPetShelter {
 			}
 		}
 	}
-	public void checkAll() { //we still need to add this to Application and robotic and we also need to add the death check
+
+	public void checkLowValueAll() { // we still need to add this to Application and robotic and we also need to add
+										// the death check
 		for (VirtualPet specificPet : petList.values()) {
 			if (specificPet instanceof Organic) {
-				((Organic) specificPet).checkLowValue(); 
+				((Organic) specificPet).checkLowValue();
+			}
+			if (specificPet instanceof Organic) {
+				((Organic) specificPet).checkLowValue();
+			}
+		}
+	}
+
+	public void checkDeathValueAll() {
+		for (VirtualPet specificPet : petList.values()) {
+			if (specificPet instanceof Organic) {
+				((Organic) specificPet).checkDeathValue();
+			}
+			if (specificPet instanceof Robotic) {
+				((Robotic) specificPet).checkDeathValue();
+			}
+		}
+	}
+
+	public void adoptDeadPets() {
+		List<String> toRemove = new ArrayList<String>();
+
+		for (VirtualPet specificPet : petList.values()) {
+			if (specificPet.getDeathFlag()) {
+				toRemove.add(specificPet.getName());
+			}
+		}
+		if (toRemove != null) {
+			for (String deadNames : toRemove) {
+				adoptVirtualPet(deadNames);
 			}
 		}
 	}
@@ -208,6 +239,13 @@ public class VirtualPetShelter {
 			System.out.println("none");
 			System.out.println();
 		}
+	}
+
+	public void endTurn() {
+		checkDeathValueAll();
+		adoptDeadPets();
+		statusChangeAll();
+		checkLowValueAll();
 	}
 
 }
