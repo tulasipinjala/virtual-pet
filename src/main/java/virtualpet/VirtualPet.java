@@ -6,6 +6,7 @@ public abstract class VirtualPet {
 	private int boredom;
 	private int dirty;
 	private String directory = System.getProperty("user.dir").replace("\\", "\\\\");
+	private boolean deathFlag; 	//default is false
 
 	private int prevBoredom;
 	private int prevDirty;
@@ -37,6 +38,10 @@ public abstract class VirtualPet {
 		return prevDirty;
 	}
 
+	public boolean getDeathFlag() {
+		return deathFlag;
+	}
+	
 	// Constructor
 	public VirtualPet(String name) {
 		this.nameRaw = name;
@@ -64,6 +69,9 @@ public abstract class VirtualPet {
 		dirty = enforceMaxValue(dirty);
 	}
 
+	public void die() {
+		deathFlag = true;
+	}
 	
 	public void updatePrevProperties() {
 
@@ -111,5 +119,7 @@ public abstract class VirtualPet {
 			return longName;
 		}
 	}
+
+
 
 }

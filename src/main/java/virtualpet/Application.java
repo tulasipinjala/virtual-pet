@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import virtualpet.extras.Levenshtein;
+
 public class Application {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
@@ -91,7 +93,7 @@ public class Application {
 
 				}
 
-				virtualPetShelter.statusChangeAll();
+				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("play") || userAction.equalsIgnoreCase("2")) {
 				userPetChoice = chooseAPet(input, virtualPetShelter, userPetChoice, userInputSplit);
 				endTime = System.nanoTime();
@@ -106,7 +108,7 @@ public class Application {
 					virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice)).play();
 				}
 
-				virtualPetShelter.statusChangeAll();
+				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("checkup") || userAction.equalsIgnoreCase("3")) {
 				userPetChoice = chooseAOrganicPet(input, virtualPetShelter, userPetChoice, userInputSplit);
 				endTime = System.nanoTime();
@@ -121,7 +123,7 @@ public class Application {
 					((Organic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).checkup();
 				}
 
-				virtualPetShelter.statusChangeAll();
+				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("feed") || userAction.equalsIgnoreCase("4")) {
 				userPetChoice = chooseAOrganicPet(input, virtualPetShelter, userPetChoice, userInputSplit);
 				endTime = System.nanoTime();
@@ -136,7 +138,7 @@ public class Application {
 					((Organic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).feed();
 				}
 
-				virtualPetShelter.statusChangeAll();
+				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("water") || userAction.equalsIgnoreCase("5")) {
 				userPetChoice = chooseAOrganicPet(input, virtualPetShelter, userPetChoice, userInputSplit);
 				endTime = System.nanoTime();
@@ -151,7 +153,7 @@ public class Application {
 					((Organic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).water();
 				}
 
-				virtualPetShelter.statusChangeAll();
+				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("plugin") || userAction.equalsIgnoreCase("6")) {
 				userPetChoice = chooseARoboticPet(input, virtualPetShelter, userPetChoice, userInputSplit);
 				endTime = System.nanoTime();
@@ -166,7 +168,7 @@ public class Application {
 					((Robotic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).plugin();
 				}
 
-				virtualPetShelter.statusChangeAll();
+				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("defrag") || userAction.equalsIgnoreCase("7")) {
 				userPetChoice = chooseARoboticPet(input, virtualPetShelter, userPetChoice, userInputSplit);
 				endTime = System.nanoTime();
@@ -181,7 +183,7 @@ public class Application {
 					((Robotic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).defrag();
 				}
 
-				virtualPetShelter.statusChangeAll();
+				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("add") || userAction.equalsIgnoreCase("8")) {
 				System.out.println("What is your new pet's name?");
 				userInput = input.nextLine();
@@ -191,7 +193,7 @@ public class Application {
 				
 				createPet(input, virtualPetShelter, userInput, userType);
 
-				virtualPetShelter.statusChangeAll();
+				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("adopt") || userAction.equalsIgnoreCase("9")) {
 				userPetChoice = chooseAPetToAdopt(input, virtualPetShelter, userPetChoice, userInputSplit);
 				endTime = System.nanoTime();
@@ -201,7 +203,7 @@ public class Application {
 				virtualPetShelter.tickAll(10);
 				virtualPetShelter.adoptVirtualPet(printCapitalizedVersion(userPetChoice));
 
-				virtualPetShelter.statusChangeAll();
+				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("help")) {
 				System.out.println(commands);
 			} else if (userAction.equalsIgnoreCase("list") || userAction.equalsIgnoreCase("0")) {

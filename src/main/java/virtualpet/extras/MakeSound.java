@@ -1,4 +1,4 @@
-package virtualpet;
+package virtualpet.extras;
 
 import java.io.File;
 import java.io.IOException;
