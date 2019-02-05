@@ -1,8 +1,9 @@
-package virtualpet;
+package virtualpet.robotic;
 
 import java.io.File;
 import java.util.Random;
 
+import virtualpet.VirtualPet;
 import virtualpet.extras.MakeSound;
 
 public class Robotic extends VirtualPet {

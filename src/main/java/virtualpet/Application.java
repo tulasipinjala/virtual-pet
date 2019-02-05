@@ -6,6 +6,8 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 import virtualpet.extras.Levenshtein;
+import virtualpet.organic.Organic;
+import virtualpet.robotic.Robotic;
 
 public class Application {
 	public static void main(String[] args) {
