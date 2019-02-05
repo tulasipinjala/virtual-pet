@@ -84,7 +84,7 @@ public abstract class Organic extends VirtualPet {
 	public void setSound(String organicType) {
 		soundOrganic = organicType;
 	}
-	
+
 	public void updatePrevProperties() {
 		
 		super.updatePrevProperties();
