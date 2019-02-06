@@ -9,11 +9,14 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 
 import virtualpet.extras.Levenshtein;
+import virtualpet.organic.Cat;
 import virtualpet.organic.Dog;
 import virtualpet.organic.Dolphin;
+import virtualpet.organic.Duck;
 import virtualpet.organic.Hawk;
 import virtualpet.organic.Lion;
 import virtualpet.organic.Organic;
+import virtualpet.organic.Pig;
 import virtualpet.organic.Wolf;
 import virtualpet.robotic.Bulbasaur;
 import virtualpet.robotic.Caterpie;
@@ -289,11 +292,14 @@ public class Application {
 			userPetCreate = roboticChoiceChecker(userPetCreate, input);
 		} else {
 			System.out.println("Which Organic pet would you like?");
-			System.out.println("1. Dog");
-			System.out.println("2. Dolphin");
-			System.out.println("3. Hawk");
-			System.out.println("4. Lion");
-			System.out.println("5. Wolf");
+			System.out.println("1. Cat");
+			System.out.println("2. Dog");
+			System.out.println("3. Dolphin");
+			System.out.println("4. Duck");
+			System.out.println("5. Hawk");
+			System.out.println("6. Lion");
+			System.out.println("7. Pig");
+			System.out.println("8. Wolf");
 			userPetCreate = printCapitalizedVersion(input.nextLine());
 			userPetCreate = organicChoiceChecker(userPetCreate, input);
 			
@@ -343,23 +349,32 @@ public class Application {
 
 	private static String organicChoiceChecker(String userPetCreate, Scanner input) {
 		Set<String> organicList = new HashSet<String>(
-				Arrays.asList("Dog", "Dolphin", "Hawk", "Lion", "Wolf"));
+				Arrays.asList("Cat","Dog","Dolphin","Duck", "Hawk", "Lion","Pig","Wolf"));
 
 		while (!organicList.contains(userPetCreate)) {
 			switch (userPetCreate) {
 			case "1":
-				userPetCreate = "Dog";
+				userPetCreate = "Cat";
 				break;
 			case "2":
-				userPetCreate = "Dolphin";
+				userPetCreate = "Dog";
 				break;
 			case "3":
-				userPetCreate = "Hawk";
+				userPetCreate = "Dolphin";
 				break;
 			case "4":
-				userPetCreate = "Lion";
+				userPetCreate = "Duck";
 				break;
 			case "5":
+				userPetCreate = "Hawk";
+				break;
+			case "6":
+				userPetCreate = "Lion";
+				break;
+			case "7":
+				userPetCreate = "Pig";
+				break;
+			case "8":
 				userPetCreate = "Wolf";
 				break;
 			
@@ -367,11 +382,14 @@ public class Application {
 
 			if (!organicList.contains(userPetCreate)) {
 				System.out.println("Please choose from list:");
-				System.out.println("1. Dog");
-				System.out.println("2. Dolphin");
-				System.out.println("3. Hawk");
-				System.out.println("4. Lion");
-				System.out.println("5. Wolf");
+				System.out.println("1. Cat");
+				System.out.println("2. Dog");
+				System.out.println("3. Dolphin");
+				System.out.println("4. Duck");
+				System.out.println("5. Hawk");
+				System.out.println("6. Lion");
+				System.out.println("7.Pig");
+				System.out.println("8. Wolf");
 				userPetCreate = printCapitalizedVersion(input.nextLine());
 			}
 		}
@@ -393,14 +411,20 @@ public class Application {
 			virtualPetShelter.addVirtualPet(new Weedle(userInput));
 		} else if (userPetCreate.equalsIgnoreCase("Pikachu")) {
 			virtualPetShelter.addVirtualPet(new Pikachu(userInput));
+		}else if (userPetCreate.equalsIgnoreCase("Cat")) {
+			virtualPetShelter.addVirtualPet(new Cat(userInput));
 		} else if (userPetCreate.equalsIgnoreCase("Dog")) {
 			virtualPetShelter.addVirtualPet(new Dog(userInput));
 		} else if (userPetCreate.equalsIgnoreCase("Dolphin")) {
 			virtualPetShelter.addVirtualPet(new Dolphin(userInput));
+		} else if (userPetCreate.equalsIgnoreCase("Duck")) {
+			virtualPetShelter.addVirtualPet(new Duck(userInput));
 		} else if (userPetCreate.equalsIgnoreCase("Hawk")) {
 			virtualPetShelter.addVirtualPet(new Hawk(userInput));
 		} else if (userPetCreate.equalsIgnoreCase("Lion")) {
 			virtualPetShelter.addVirtualPet(new Lion(userInput));
+		} else if (userPetCreate.equalsIgnoreCase("Pig")) {
+			virtualPetShelter.addVirtualPet(new Pig(userInput));
 		} else if (userPetCreate.equalsIgnoreCase("Wolf")) {
 			virtualPetShelter.addVirtualPet(new Wolf(userInput));
 		} 
