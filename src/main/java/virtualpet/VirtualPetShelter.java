@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import virtualpet.organic.Organic;
 import virtualpet.robotic.Robotic;
@@ -14,7 +15,9 @@ public class VirtualPetShelter {
 
 	private HashMap<String, VirtualPet> petList = new HashMap<String, VirtualPet>();
 
-	private int cageCleanliness = 1000;
+	private int cageCleanliness = 1500; // change
+	private boolean cageLowWarningCounter = true;
+	private boolean cageDeathWarningCounter = true;
 
 	// Accessor method
 	public int getCageCleanliness() {
@@ -61,6 +64,7 @@ public class VirtualPetShelter {
 	}
 
 	public void cleanAll() {
+		cleanCage();
 		for (VirtualPet specificPet : petList.values()) {
 			specificPet.clean();
 
@@ -111,13 +115,15 @@ public class VirtualPetShelter {
 	}
 
 	public void tickAll(int time) {
-		cageCleanliness -= time;
+		cageCleanliness -= time; // changes
+		cageCleanliness = enforceLowValue(cageCleanliness);
 		for (VirtualPet specificPet : petList.values()) {
 			if (specificPet instanceof Organic) {
 				((Organic) specificPet).tick(time);
 			} else if (specificPet instanceof Robotic) {
 				((Robotic) specificPet).tick(time);
 			}
+			specificPet.tickCage(cageCleanliness, time);
 		}
 
 	}
@@ -145,30 +151,162 @@ public class VirtualPetShelter {
 
 	}
 
-	public void nameAll() {
-		for (VirtualPet specificPet : petList.values()) {
-			System.out.println(specificPet.getName());
-		}
-	}
+	public String nameAll(Scanner input) {
+		int counter;
+		String userPetChoice;
+		HashMap<Integer, String> numberWithPet = new HashMap<Integer, String>();
 
-	public void nameAllOrganic() {
-		for (VirtualPet specificPet : petList.values()) {
-			if (specificPet instanceof Organic) {
-				System.out.println(specificPet.getName());
+		while (true) {
+			counter = 1;
+			for (VirtualPet specificPet : petList.values()) {
+				System.out.println(counter + ". " + specificPet.getName());
+				numberWithPet.put(counter, specificPet.getName());
+				counter++;
+			}
+			System.out.println(counter + ". All");
+			numberWithPet.put(counter, "All");
+			System.out.println("");
+			userPetChoice = printCapitalizedVersion(input.nextLine());
+
+			if (isNumeric(userPetChoice)) {
+				if (numberWithPet.containsKey(Integer.parseInt(userPetChoice))) {
+					userPetChoice = numberWithPet.get(Integer.parseInt(userPetChoice));
+					break;
+				} else {
+					System.out.println("Please pick a better number.");
+				}
+			} else {
+				break;
 			}
 		}
+		return userPetChoice;
 	}
+	
+	public String nameAllCage(Scanner input) {
+		int counter;
+		String userPetChoice;
+		HashMap<Integer, String> numberWithPet = new HashMap<Integer, String>();
 
-	public void nameAllRobotic() {
-		for (VirtualPet specificPet : petList.values()) {
-			if (specificPet instanceof Robotic) {
-				System.out.println(specificPet.getName());
+		while (true) {
+			counter = 1;
+			for (VirtualPet specificPet : petList.values()) {
+				System.out.println(counter + ". " + specificPet.getName());
+				numberWithPet.put(counter, specificPet.getName());
+				counter++;
+			}
+			System.out.println(counter + ". Cages");
+			numberWithPet.put(counter, "Cages");
+			counter++;
+			System.out.println(counter + ". All");
+			numberWithPet.put(counter, "All");
+			System.out.println("");
+			userPetChoice = printCapitalizedVersion(input.nextLine());
+
+			if (isNumeric(userPetChoice)) {
+				if (numberWithPet.containsKey(Integer.parseInt(userPetChoice))) {
+					userPetChoice = numberWithPet.get(Integer.parseInt(userPetChoice));
+					break;
+				} else {
+					System.out.println("Please pick a better number.");
+				}
+			} else {
+				break;
 			}
 		}
+		return userPetChoice;
 	}
 
-	public void checkLowValueAll() { // we still need to add this to Application and robotic and we also need to add
-										// the death check
+	public String nameAllOrganic(Scanner input) {
+		int counter;
+		String userPetChoice;
+		HashMap<Integer, String> numberWithPet = new HashMap<Integer, String>();
+
+		while (true) {
+			counter = 1;
+			for (VirtualPet specificPet : petList.values()) {
+				if (specificPet instanceof Organic) {
+					System.out.println(counter + ". " + specificPet.getName());
+					numberWithPet.put(counter, specificPet.getName());
+					counter++;
+				}
+			}
+			System.out.println(counter + ". All");
+			numberWithPet.put(counter, "All");
+			System.out.println("");
+			userPetChoice = printCapitalizedVersion(input.nextLine());
+
+			if (isNumeric(userPetChoice)) {
+				if (numberWithPet.containsKey(Integer.parseInt(userPetChoice))) {
+					userPetChoice = numberWithPet.get(Integer.parseInt(userPetChoice));
+					break;
+				} else {
+					System.out.println("Please pick a better number.");
+				}
+			}
+		}
+		return userPetChoice;
+	}
+	
+	public String nameAllRobotic(Scanner input) {
+		int counter;
+		String userPetChoice;
+		HashMap<Integer, String> numberWithPet = new HashMap<Integer, String>();
+
+		while (true) {
+			counter = 1;
+			for (VirtualPet specificPet : petList.values()) {
+				if (specificPet instanceof Robotic) {
+					System.out.println(counter + ". " + specificPet.getName());
+					numberWithPet.put(counter, specificPet.getName());
+					counter++;
+				}
+			}
+			System.out.println(counter + ". All");
+			numberWithPet.put(counter, "All");
+			System.out.println("");
+			userPetChoice = printCapitalizedVersion(input.nextLine());
+
+			if (isNumeric(userPetChoice)) {
+				if (numberWithPet.containsKey(Integer.parseInt(userPetChoice))) {
+					userPetChoice = numberWithPet.get(Integer.parseInt(userPetChoice));
+					break;
+				} else {
+					System.out.println("Please pick a better number.");
+				}
+			}
+		}
+		return userPetChoice;
+	}
+
+	public String nameAllAdopt(Scanner input) {
+		int counter;
+		String userPetChoice;
+		HashMap<Integer, String> numberWithPet = new HashMap<Integer, String>();
+
+		while (true) {
+			counter = 1;
+			for (VirtualPet specificPet : petList.values()) {
+				System.out.println(counter + ". " + specificPet.getName());
+				numberWithPet.put(counter, specificPet.getName());
+				counter++;
+			}
+			System.out.println("");
+			userPetChoice = printCapitalizedVersion(input.nextLine());
+
+			if (isNumeric(userPetChoice)) {
+				if (numberWithPet.containsKey(Integer.parseInt(userPetChoice))) {
+					userPetChoice = numberWithPet.get(Integer.parseInt(userPetChoice));
+					break;
+				} else {
+					System.out.println("Please pick a better number.");
+				}
+			}
+		}
+		return userPetChoice;
+	}
+	
+	public void checkLowValueAll() {
+
 		for (VirtualPet specificPet : petList.values()) {
 			if (specificPet instanceof Organic) {
 				((Organic) specificPet).checkLowValue();
@@ -177,6 +315,22 @@ public class VirtualPetShelter {
 				((Robotic) specificPet).checkLowValue();
 			}
 		}
+
+		if (cageCleanliness < 150) {
+			if (cageDeathWarningCounter) {
+				System.out.println("Your cage is very dirty! Clean your cage ASAP!");
+				cageDeathWarningCounter = false;
+			}
+		} else if (cageCleanliness < 600) {
+			if (cageLowWarningCounter) {
+				System.out.println("Your cage is getting dirty! This will affect the cleanliness of your pet!");
+				cageLowWarningCounter = false;
+			}
+		} else {
+			cageDeathWarningCounter = true;
+			cageLowWarningCounter = true;
+		}
+
 	}
 
 	public void checkDeathValueAll() {
@@ -244,14 +398,44 @@ public class VirtualPetShelter {
 		}
 	}
 
+	public int enforceLowValue(int value) {
+		if (value < 0) {
+			value = 0;
+		}
+		return value;
+	}
+
 	public void removeDeadPets() {
 		checkDeathValueAll();
 		adoptDeadPets();
 	}
-		
+
 	public void endTurn() {
 		statusChangeAll();
 		checkLowValueAll();
 	}
-	
+
+	private static String printCapitalizedVersion(String message) {
+		String[] messageSplit = message.trim().split("\\s+");
+		if (messageSplit.length == 1) {
+			return message.substring(0, 1).toUpperCase() + message.substring(1).toLowerCase();
+		} else {
+			String longName = "";
+			for (int i = 0; i < messageSplit.length; i++) {
+				longName = longName + " " + messageSplit[i].substring(0, 1).toUpperCase()
+						+ messageSplit[i].substring(1).toLowerCase();
+			}
+			return longName;
+		}
+	}
+
+	public static boolean isNumeric(String strNum) {
+		try {
+			int d = Integer.parseInt(strNum);
+		} catch (NumberFormatException | NullPointerException nfe) {
+			return false;
+		}
+		return true;
+	}
+
 }

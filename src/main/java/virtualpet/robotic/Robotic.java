@@ -25,7 +25,7 @@ public abstract class Robotic extends VirtualPet {
 
 	public void getStatus() {
 		System.out.println(getName() + "\n Charge is at " + charge + "\n Boredom is at " + getBoredom()
-				+ "\n Fragmentation is at " + fragmentation + "\n Dirty is at " + getDirty());
+				+ "\n Fragmentation is at " + fragmentation + "\n Cleanliness is at " + getCleanliness());
 	}
 
 	public void getStatusChange() {
@@ -33,7 +33,7 @@ public abstract class Robotic extends VirtualPet {
 				+ "\n Charge \t" + barMaker(charge) 
 				+ "\n Boredom \t" + barMaker(getBoredom())
 				+ "\n Fragmentation \t" + barMaker(fragmentation)
-				+ "\n Dirty \t\t" + barMaker(getDirty())); 
+				+ "\n Cleanliness \t" + barMaker(getCleanliness())); 
 	}
 
 	// constructor
@@ -58,7 +58,7 @@ public abstract class Robotic extends VirtualPet {
 		charge = enforceMaxValue(charge);
 	}
 
-	public void defrag() { // Increase distance from 0 dirty
+	public void defrag() { // Increase distance from 0 Cleanliness
 		fragmentation = 1500;
 	}
 	
@@ -85,14 +85,14 @@ public abstract class Robotic extends VirtualPet {
 	
 	public void checkLowValue() {
 		int warningIndex = 300;
-		boolean dirtyFlag = (getDirty() < warningIndex);
+		boolean cleanlinessFlag = (getCleanliness() < warningIndex);
 		boolean boredomFlag = (getBoredom() < warningIndex);
 		boolean chargeFlag = (charge < warningIndex); 
 		boolean fragmentationFlag = (fragmentation < warningIndex);
 		String warningList = "";
 		boolean notFirstCounter = false;
-		if (dirtyFlag) {
-			warningList = warningList + "Dirty";
+		if (cleanlinessFlag) {
+			warningList = warningList + "Cleanliness";
 			notFirstCounter = true;
 		}
 		if (boredomFlag) {
@@ -111,13 +111,13 @@ public abstract class Robotic extends VirtualPet {
 			notFirstCounter = true;
 		}
 
-		if (dirtyFlag || boredomFlag || chargeFlag|| fragmentationFlag) {
+		if (cleanlinessFlag || boredomFlag || chargeFlag|| fragmentationFlag) {
 		System.out.println(getName() + " is low on: " + warningList);
 		}
 	}
 	
 	public void checkDeathValue() {
-		if (getDirty() <= 0 || getBoredom() <= 0 ||  charge <= 0 || fragmentation <= 0) {
+		if (getCleanliness() <= 0 || getBoredom() <= 0 ||  charge <= 0 || fragmentation <= 0) {
 			System.out.println(getName() + " has been adopted by the Terminator.");
 			super.die();
 		}

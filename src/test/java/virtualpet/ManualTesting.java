@@ -22,17 +22,18 @@ public class ManualTesting {
 //		System.out.println("o & Robotic: " + Levenshtein.calculate("o","Robotic"));
 		
 //		Collection<?> toRemove;
-		List<String> toRemove = new ArrayList<String>();
+//		List<String> toRemove = new ArrayList<String>();
+//		
+//		toRemove.add("test");
+//
+//		if (toRemove != null) {
+//			for (String deadNames : toRemove) {
+//				System.out.println(deadNames);
+//			}
+//		}
+//		
+//		Scanner input = new Scanner(System.in);
 		
-		toRemove.add("test");
-
-		if (toRemove != null) {
-			for (String deadNames : toRemove) {
-				System.out.println(deadNames);
-			}
-		}
-		
-		Scanner input = new Scanner(System.in);
 		//dog 
 		System.out.println("           __\r\n" + 
 				"      (___()'`;\r\n" + 

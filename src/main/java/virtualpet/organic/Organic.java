@@ -31,12 +31,12 @@ public abstract class Organic extends VirtualPet {
 
 	public void getStatus() {
 		System.out.println(getName() + "\n Hunger is at " + hunger + "\n Boredom is at " + getBoredom() + "\n Health is at "
-				+ health + "\n Dirty is at " + getDirty() + "\n Thirst is at " + thirst);
+				+ health + "\n Cleanliness is at " + getCleanliness() + "\n Thirst is at " + thirst);
 	}
 
 	public void getStatusChange() {
 		System.out.println(getName() + " - " + getClass().getSimpleName()
-				+ "\n Dirty \t\t" + barMaker(getDirty()) 
+				+ "\n Cleanliness \t" + barMaker(getCleanliness()) 
 				+ "\n Boredom \t" + barMaker(getBoredom())
 				+ "\n Health \t" + barMaker(health)
 				+ "\n Hunger \t" + barMaker(hunger) 
@@ -72,7 +72,7 @@ public abstract class Organic extends VirtualPet {
 		health = 1500;
 	}
 	
-	public void water() { // Increase distance from 0 dirty
+	public void water() { // Increase distance from 0 cleanliness
 		thirst += 500;
 		thirst = enforceMaxValue(thirst);
 	}
@@ -101,15 +101,15 @@ public abstract class Organic extends VirtualPet {
 
 	public void checkLowValue() {
 		int warningIndex = 300;
-		boolean dirtyFlag = (getDirty() < warningIndex);
+		boolean cleanlinessFlag = (getCleanliness() < warningIndex);
 		boolean boredomFlag = (getBoredom() < warningIndex);
 		boolean healthFlag = (health < warningIndex); 
 		boolean hungerFlag = (hunger < warningIndex);
 		boolean thirstFlag = (thirst < warningIndex);
 		String warningList = "";
 		boolean notFirstCounter = false;
-		if (dirtyFlag) {
-			warningList = warningList + "Dirty";
+		if (cleanlinessFlag) {
+			warningList = warningList + "Cleanliness";
 			notFirstCounter = true;
 		}
 		if (boredomFlag) {
@@ -132,13 +132,13 @@ public abstract class Organic extends VirtualPet {
 			warningList = warningList + "Thirst";
 			notFirstCounter = true;
 		}
-		if (dirtyFlag || boredomFlag || healthFlag  || hungerFlag|| thirstFlag) {
+		if (cleanlinessFlag || boredomFlag || healthFlag  || hungerFlag|| thirstFlag) {
 		System.out.println(getName() + " is low on: " + warningList);
 		}
 	}
 	
 	public void checkDeathValue() {
-		if (getDirty() <= 0 || getBoredom() <= 0 ||  health <= 0 || hunger <= 0 ||  thirst <= 0) {
+		if (getCleanliness() <= 0 || getBoredom() <= 0 ||  health <= 0 || hunger <= 0 ||  thirst <= 0) {
 			System.out.println(getName() + " has been adopted by the Grim Reaper.");
 			super.die();
 		}

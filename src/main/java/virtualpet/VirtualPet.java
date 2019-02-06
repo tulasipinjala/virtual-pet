@@ -4,12 +4,12 @@ public abstract class VirtualPet {
 	// Properties
 	private String nameRaw;
 	private int boredom;
-	private int dirty;
+	private int cleanliness;
 	private String directory = System.getProperty("user.dir").replace("\\", "\\\\");
-	private boolean deathFlag; 	//default is false
+	private boolean deathFlag; // default is false
 
 	private int prevBoredom;
-	private int prevDirty;
+	private int prevCleanliness;
 	private String name;
 	public boolean Organic;
 
@@ -22,8 +22,8 @@ public abstract class VirtualPet {
 		return boredom;
 	}
 
-	public int getDirty() {
-		return dirty;
+	public int getCleanliness() {
+		return cleanliness;
 	}
 
 	public String getDirectory() {
@@ -34,29 +34,38 @@ public abstract class VirtualPet {
 		return prevBoredom;
 	}
 
-	public int getPrevDirty() {
-		return prevDirty;
+	public int getPrevCleanliness() {
+		return prevCleanliness;
 	}
 
 	public boolean getDeathFlag() {
 		return deathFlag;
 	}
-	
+
 	// Constructor
 	public VirtualPet(String name) {
 		this.nameRaw = name;
 		this.name = printCapitalizedVersion(nameRaw);
 		boredom = 1000;
-		dirty = 1000;
+		cleanliness = 1000;
 
 		prevBoredom = 1000;
-		prevDirty = 1000;
+		prevCleanliness = 1000;
 	}
 
 	// Method
 	public void tick(int time) {
 		boredom -= time;
-		dirty -= time;
+		cleanliness -= time;		
+		
+	}
+	
+	public void tickCage(int cageCleanliness, int time) {
+		if (cageCleanliness < 150) {
+			cleanliness -= time*15;	
+		} else if (cageCleanliness < 600) {
+			cleanliness -= time*5;
+		}
 	}
 
 	public void play() { // Must play with your pet
@@ -64,30 +73,28 @@ public abstract class VirtualPet {
 		boredom = enforceMaxValue(boredom);
 	}
 
-	public void clean() { // Increase distance from 0 dirty
-		dirty += 500;
-		dirty = enforceMaxValue(dirty);
+	public void clean() { // Increase distance from 0 cleanliness
+		cleanliness += 500;
+		cleanliness = enforceMaxValue(cleanliness);
 	}
 
 	public void die() {
 		deathFlag = true;
 	}
-	
+
 	public void updatePrevProperties() {
 
 		prevBoredom = boredom;
-		prevDirty = dirty;
+		prevCleanliness = cleanliness;
 
 	}
-	
+
 	public int enforceMaxValue(int value) {
 		if (value > 1500) {
 			value = 1500;
 		}
 		return value;
 	}
-	
-	
 
 	// special methods
 	public static String barMaker(int stat) {
@@ -119,7 +126,5 @@ public abstract class VirtualPet {
 			return longName;
 		}
 	}
-
-
 
 }

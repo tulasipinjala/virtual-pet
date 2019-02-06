@@ -32,7 +32,7 @@ public class Application {
 		long timeElapsed;
 		String userPetCreate = "";
 		String userAction;
-		String userPetChoice;
+		String userPetChoice; 
 		String[] userInputSplit;
 		String longPetname;
 
@@ -410,17 +410,13 @@ public class Application {
 			String[] userInputSplit) {
 		if (userInputSplit.length == 1) {
 			System.out.println("Which pet?");
-			virtualPetShelter.nameAll();
-			System.out.println("");
-			userPetChoice = input.nextLine();
+			userPetChoice = virtualPetShelter.nameAll(input);
 		}
 
 		while (!(virtualPetShelter.getVirtualPets().containsKey(printCapitalizedVersion(userPetChoice))
 				|| userPetChoice.equalsIgnoreCase("all"))) {
-			System.out.println("Hey! Type a name from the list! Which pet?");
-			virtualPetShelter.nameAll();
-			System.out.println("");
-			userPetChoice = input.nextLine();
+			System.out.println("Hey! Please choose from the list! Which pet?");
+			userPetChoice = virtualPetShelter.nameAll(input);
 		}
 		return userPetChoice;
 	}
@@ -429,17 +425,12 @@ public class Application {
 			String[] userInputSplit) {
 		if (userInputSplit.length == 1) {
 			System.out.println("Which pet? Or cages.");
-			virtualPetShelter.nameAll();
-			System.out.println("Cages");
-			System.out.println("");
-			userPetChoice = input.nextLine();
+			userPetChoice = virtualPetShelter.nameAllCage(input);
 		}
 
 		while (!(virtualPetShelter.getVirtualPets().containsKey(printCapitalizedVersion(userPetChoice))
 				|| userPetChoice.equalsIgnoreCase("all") || userPetChoice.equalsIgnoreCase("cages"))) {
-			System.out.println("Cages");
-			System.out.println("");
-			userPetChoice = input.nextLine();
+			userPetChoice = virtualPetShelter.nameAllCage(input);
 		}
 		return userPetChoice;
 	}
@@ -448,16 +439,12 @@ public class Application {
 			String[] userInputSplit) {
 		if (userInputSplit.length == 1) {
 			System.out.println("Which pet?");
-			virtualPetShelter.nameAll();
-			System.out.println("");
-			userPetChoice = input.nextLine();
+			userPetChoice = virtualPetShelter.nameAllAdopt(input);
 		}
 
 		while (!(virtualPetShelter.getVirtualPets().containsKey(printCapitalizedVersion(userPetChoice)))) {
 			System.out.println("Hey! Type a name from the list! Which pet?");
-			virtualPetShelter.nameAll();
-			System.out.println("");
-			userPetChoice = input.nextLine();
+			userPetChoice = virtualPetShelter.nameAllAdopt(input);
 		}
 		return userPetChoice;
 	}
@@ -466,17 +453,13 @@ public class Application {
 			String[] userInputSplit) {
 		if (userInputSplit.length == 1) {
 			System.out.println("Which pet?");
-			virtualPetShelter.nameAllOrganic();
-			System.out.println("");
-			userPetChoice = input.nextLine();
+			userPetChoice = virtualPetShelter.nameAllOrganic(input);
 		}
 
 		while (!(virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice)) instanceof Organic
 				|| userPetChoice.equalsIgnoreCase("all"))) {
 			System.out.println("The pet must be Organic. Which pet?");
-			virtualPetShelter.nameAllOrganic();
-			System.out.println("");
-			userPetChoice = input.nextLine();
+			userPetChoice = virtualPetShelter.nameAllOrganic(input);
 		}
 
 		return userPetChoice;
@@ -486,17 +469,13 @@ public class Application {
 			String[] userInputSplit) {
 		if (userInputSplit.length == 1) {
 			System.out.println("Which pet?");
-			virtualPetShelter.nameAllRobotic();
-			System.out.println("");
-			userPetChoice = input.nextLine();
+			userPetChoice = virtualPetShelter.nameAllRobotic(input);
 		}
 
 		while (!(virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice)) instanceof Robotic
 				|| userPetChoice.equalsIgnoreCase("all"))) {
 			System.out.println("The pet must be Robotic. Which pet?");
-			virtualPetShelter.nameAllRobotic();
-			System.out.println("");
-			userPetChoice = input.nextLine();
+			userPetChoice = virtualPetShelter.nameAllRobotic(input);
 		}
 
 		return userPetChoice;
@@ -521,6 +500,7 @@ public class Application {
 		int roboticGuess = Levenshtein.calculate(printCapitalizedVersion(userType), "Robotic");
 		String guess;
 		while (true) {
+			
 			if (organicGuess < roboticGuess) {
 				guess = "Organic";
 				break;
@@ -531,6 +511,8 @@ public class Application {
 				System.out.println("Please try again. Is your pet Organic or Robotic?");
 				userType = input.nextLine();
 			}
+			organicGuess = Levenshtein.calculate(printCapitalizedVersion(userType), "Organic");
+			roboticGuess = Levenshtein.calculate(printCapitalizedVersion(userType), "Robotic");
 		}
 		return guess;
 	}
