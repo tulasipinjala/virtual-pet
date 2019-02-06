@@ -244,11 +244,14 @@ public class VirtualPetShelter {
 		}
 	}
 
-	public void endTurn() {
+	public void removeDeadPets() {
 		checkDeathValueAll();
 		adoptDeadPets();
+	}
+		
+	public void endTurn() {
 		statusChangeAll();
 		checkLowValueAll();
 	}
-
+	
 }
