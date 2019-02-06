@@ -119,7 +119,7 @@ public abstract class VirtualPet {
 			return message.substring(0, 1).toUpperCase() + message.substring(1).toLowerCase();
 		} else {
 			String longName = messageSplit[0].substring(0, 1).toUpperCase()
-					+ messageSplit[i].substring(1).toLowerCase();
+					+ messageSplit[0].substring(1).toLowerCase();
 			for (int i = 1; i < messageSplit.length; i++) {
 				longName = longName + " " + messageSplit[i].substring(0, 1).toUpperCase()
 						+ messageSplit[i].substring(1).toLowerCase();
