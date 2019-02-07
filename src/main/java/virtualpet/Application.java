@@ -35,7 +35,7 @@ public class Application {
 		long timeElapsed;
 		String userPetCreate = "";
 		String userAction;
-		String userPetChoice; 
+		String userPetChoice;
 		String[] userInputSplit;
 		String longPetname;
 
@@ -70,8 +70,7 @@ public class Application {
 		userType = typeGuesser(userType, input);
 
 		userPetCreate = choosePetSubclass(input, userPetCreate, userType);
-		
-		
+
 		createPet(input, virtualPetShelter, userInput, userPetCreate);
 		// Displays initial pet's name
 		System.out.println(
@@ -136,85 +135,105 @@ public class Application {
 				userPetCreate = addPetPrompt(input, virtualPetShelter, userPetCreate);
 				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("checkup") || userAction.equalsIgnoreCase("3")) {
-				userPetChoice = chooseAOrganicPet(input, virtualPetShelter, userPetChoice, userInputSplit);
-				endTime = System.nanoTime();
-				timeElapsed = (endTime - startTime) / 1000000000;
-				virtualPetShelter.tickAll((int) timeElapsed);
+				if (virtualPetShelter.organicChecker()) {
+					userPetChoice = chooseAOrganicPet(input, virtualPetShelter, userPetChoice, userInputSplit);
+					endTime = System.nanoTime();
+					timeElapsed = (endTime - startTime) / 1000000000;
+					virtualPetShelter.tickAll((int) timeElapsed);
 
-				if (userPetChoice.equalsIgnoreCase("all")) {
-					virtualPetShelter.tickAll(20);
-					virtualPetShelter.checkupAll();
+					if (userPetChoice.equalsIgnoreCase("all")) {
+						virtualPetShelter.tickAll(20);
+						virtualPetShelter.checkupAll();
+					} else {
+						virtualPetShelter.tickAll(10);
+						((Organic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).checkup();
+					}
+					virtualPetShelter.removeDeadPets();
+					userPetCreate = addPetPrompt(input, virtualPetShelter, userPetCreate);
+					virtualPetShelter.endTurn();
 				} else {
-					virtualPetShelter.tickAll(10);
-					((Organic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).checkup();
+					System.out.println("You do not have any Organic pets.");
 				}
-				virtualPetShelter.removeDeadPets();
-				userPetCreate = addPetPrompt(input, virtualPetShelter, userPetCreate);
-				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("feed") || userAction.equalsIgnoreCase("4")) {
-				userPetChoice = chooseAOrganicPet(input, virtualPetShelter, userPetChoice, userInputSplit);
-				endTime = System.nanoTime();
-				timeElapsed = (endTime - startTime) / 1000000000;
-				virtualPetShelter.tickAll((int) timeElapsed);
+				if (virtualPetShelter.organicChecker()) {
+					userPetChoice = chooseAOrganicPet(input, virtualPetShelter, userPetChoice, userInputSplit);
+					endTime = System.nanoTime();
+					timeElapsed = (endTime - startTime) / 1000000000;
+					virtualPetShelter.tickAll((int) timeElapsed);
 
-				if (userPetChoice.equalsIgnoreCase("all")) {
-					virtualPetShelter.tickAll(20);
-					virtualPetShelter.feedAll();
+					if (userPetChoice.equalsIgnoreCase("all")) {
+						virtualPetShelter.tickAll(20);
+						virtualPetShelter.feedAll();
+					} else {
+						virtualPetShelter.tickAll(10);
+						((Organic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).feed();
+					}
+					virtualPetShelter.removeDeadPets();
+					userPetCreate = addPetPrompt(input, virtualPetShelter, userPetCreate);
+					virtualPetShelter.endTurn();
 				} else {
-					virtualPetShelter.tickAll(10);
-					((Organic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).feed();
+					System.out.println("You do not have any Organic pets.");
 				}
-				virtualPetShelter.removeDeadPets();
-				userPetCreate = addPetPrompt(input, virtualPetShelter, userPetCreate);
-				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("water") || userAction.equalsIgnoreCase("5")) {
-				userPetChoice = chooseAOrganicPet(input, virtualPetShelter, userPetChoice, userInputSplit);
-				endTime = System.nanoTime();
-				timeElapsed = (endTime - startTime) / 1000000000;
-				virtualPetShelter.tickAll((int) timeElapsed);
+				if (virtualPetShelter.organicChecker()) {
+					userPetChoice = chooseAOrganicPet(input, virtualPetShelter, userPetChoice, userInputSplit);
+					endTime = System.nanoTime();
+					timeElapsed = (endTime - startTime) / 1000000000;
+					virtualPetShelter.tickAll((int) timeElapsed);
 
-				if (userPetChoice.equalsIgnoreCase("all")) {
-					virtualPetShelter.tickAll(20);
-					virtualPetShelter.waterAll();
+					if (userPetChoice.equalsIgnoreCase("all")) {
+						virtualPetShelter.tickAll(20);
+						virtualPetShelter.waterAll();
+					} else {
+						virtualPetShelter.tickAll(10);
+						((Organic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).water();
+					}
+					virtualPetShelter.removeDeadPets();
+					userPetCreate = addPetPrompt(input, virtualPetShelter, userPetCreate);
+					virtualPetShelter.endTurn();
 				} else {
-					virtualPetShelter.tickAll(10);
-					((Organic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).water();
+					System.out.println("You do not have any Organic pets.");
 				}
-				virtualPetShelter.removeDeadPets();
-				userPetCreate = addPetPrompt(input, virtualPetShelter, userPetCreate);
-				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("plugin") || userAction.equalsIgnoreCase("6")) {
-				userPetChoice = chooseARoboticPet(input, virtualPetShelter, userPetChoice, userInputSplit);
-				endTime = System.nanoTime();
-				timeElapsed = (endTime - startTime) / 1000000000;
-				virtualPetShelter.tickAll((int) timeElapsed);
+				if (virtualPetShelter.roboticChecker()) {
+					userPetChoice = chooseARoboticPet(input, virtualPetShelter, userPetChoice, userInputSplit);
+					endTime = System.nanoTime();
+					timeElapsed = (endTime - startTime) / 1000000000;
+					virtualPetShelter.tickAll((int) timeElapsed);
 
-				if (userPetChoice.equalsIgnoreCase("all")) {
-					virtualPetShelter.tickAll(20);
-					virtualPetShelter.pluginAll();
+					if (userPetChoice.equalsIgnoreCase("all")) {
+						virtualPetShelter.tickAll(20);
+						virtualPetShelter.pluginAll();
+					} else {
+						virtualPetShelter.tickAll(10);
+						((Robotic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).plugin();
+					}
+					virtualPetShelter.removeDeadPets();
+					userPetCreate = addPetPrompt(input, virtualPetShelter, userPetCreate);
+					virtualPetShelter.endTurn();
 				} else {
-					virtualPetShelter.tickAll(10);
-					((Robotic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).plugin();
+					System.out.println("You do not have any Robotic pets.");
 				}
-				virtualPetShelter.removeDeadPets();
-				userPetCreate = addPetPrompt(input, virtualPetShelter, userPetCreate);
-				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("defrag") || userAction.equalsIgnoreCase("7")) {
-				userPetChoice = chooseARoboticPet(input, virtualPetShelter, userPetChoice, userInputSplit);
-				endTime = System.nanoTime();
-				timeElapsed = (endTime - startTime) / 1000000000;
-				virtualPetShelter.tickAll((int) timeElapsed);
+				if (virtualPetShelter.roboticChecker()) {
+					userPetChoice = chooseARoboticPet(input, virtualPetShelter, userPetChoice, userInputSplit);
+					endTime = System.nanoTime();
+					timeElapsed = (endTime - startTime) / 1000000000;
+					virtualPetShelter.tickAll((int) timeElapsed);
 
-				if (userPetChoice.equalsIgnoreCase("all")) {
-					virtualPetShelter.tickAll(20);
-					virtualPetShelter.defragAll();
+					if (userPetChoice.equalsIgnoreCase("all")) {
+						virtualPetShelter.tickAll(20);
+						virtualPetShelter.defragAll();
+					} else {
+						virtualPetShelter.tickAll(10);
+						((Robotic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).defrag();
+					}
+					virtualPetShelter.removeDeadPets();
+					userPetCreate = addPetPrompt(input, virtualPetShelter, userPetCreate);
+					virtualPetShelter.endTurn();
 				} else {
-					virtualPetShelter.tickAll(10);
-					((Robotic) virtualPetShelter.getPet(printCapitalizedVersion(userPetChoice))).defrag();
+					System.out.println("You do not have any Robotic pets.");
 				}
-				virtualPetShelter.removeDeadPets();
-				userPetCreate = addPetPrompt(input, virtualPetShelter, userPetCreate);
-				virtualPetShelter.endTurn();
 			} else if (userAction.equalsIgnoreCase("add") || userAction.equalsIgnoreCase("8")) {
 				System.out.println("What is your new pet's name?");
 				userInput = input.nextLine();
@@ -224,7 +243,7 @@ public class Application {
 				userPetCreate = choosePetSubclass(input, userPetCreate, userType);
 
 				createPet(input, virtualPetShelter, userInput, userPetCreate);
-				
+
 				virtualPetShelter.removeDeadPets();
 				userPetCreate = addPetPrompt(input, virtualPetShelter, userPetCreate);
 				virtualPetShelter.endTurn();
@@ -277,8 +296,6 @@ public class Application {
 		return userPetCreate;
 	}
 
-	
-
 	private static String choosePetSubclass(Scanner input, String userPetCreate, String userType) {
 		if (userType.equalsIgnoreCase("Robotic")) {
 			System.out.println("Which Robotic pet would you like?");
@@ -302,7 +319,7 @@ public class Application {
 			System.out.println("8. Wolf");
 			userPetCreate = printCapitalizedVersion(input.nextLine());
 			userPetCreate = organicChoiceChecker(userPetCreate, input);
-			
+
 		}
 		return userPetCreate;
 	}
@@ -349,7 +366,7 @@ public class Application {
 
 	private static String organicChoiceChecker(String userPetCreate, Scanner input) {
 		Set<String> organicList = new HashSet<String>(
-				Arrays.asList("Cat","Dog","Dolphin","Duck", "Hawk", "Lion","Pig","Wolf"));
+				Arrays.asList("Cat", "Dog", "Dolphin", "Duck", "Hawk", "Lion", "Pig", "Wolf"));
 
 		while (!organicList.contains(userPetCreate)) {
 			switch (userPetCreate) {
@@ -377,7 +394,7 @@ public class Application {
 			case "8":
 				userPetCreate = "Wolf";
 				break;
-			
+
 			}
 
 			if (!organicList.contains(userPetCreate)) {
@@ -396,7 +413,6 @@ public class Application {
 		return userPetCreate;
 	}
 
-
 	private static void createPet(Scanner input, VirtualPetShelter virtualPetShelter, String userInput,
 			String userPetCreate) {
 		if (userPetCreate.equalsIgnoreCase("Bulbasaur")) {
@@ -411,7 +427,7 @@ public class Application {
 			virtualPetShelter.addVirtualPet(new Weedle(userInput));
 		} else if (userPetCreate.equalsIgnoreCase("Pikachu")) {
 			virtualPetShelter.addVirtualPet(new Pikachu(userInput));
-		}else if (userPetCreate.equalsIgnoreCase("Cat")) {
+		} else if (userPetCreate.equalsIgnoreCase("Cat")) {
 			virtualPetShelter.addVirtualPet(new Cat(userInput));
 		} else if (userPetCreate.equalsIgnoreCase("Dog")) {
 			virtualPetShelter.addVirtualPet(new Dog(userInput));
@@ -427,7 +443,7 @@ public class Application {
 			virtualPetShelter.addVirtualPet(new Pig(userInput));
 		} else if (userPetCreate.equalsIgnoreCase("Wolf")) {
 			virtualPetShelter.addVirtualPet(new Wolf(userInput));
-		} 
+		}
 	}
 
 	private static String chooseAPet(Scanner input, VirtualPetShelter virtualPetShelter, String userPetChoice,
@@ -525,7 +541,7 @@ public class Application {
 		int roboticGuess = Levenshtein.calculate(printCapitalizedVersion(userType), "Robotic");
 		String guess;
 		while (true) {
-			
+
 			if (organicGuess < roboticGuess) {
 				guess = "Organic";
 				break;

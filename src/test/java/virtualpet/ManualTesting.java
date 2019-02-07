@@ -3,6 +3,7 @@ package virtualpet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,6 +35,10 @@ public class ManualTesting {
 //		
 //		Scanner input = new Scanner(System.in);
 		
+		
+		HashMap<String, VirtualPet> petList = new HashMap<String, VirtualPet>();
+		
+		petList.
 		//dog 
 		System.out.println("           __\r\n" + 
 				"      (___()'`;\r\n" + 
