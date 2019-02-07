@@ -86,7 +86,7 @@ public abstract class Robotic extends VirtualPet {
 	}
 	
 	public void checkLowValue() {
-		int warningIndex = 300;
+		int warningIndex = 600;
 		boolean cleanlinessFlag = (getCleanliness() < warningIndex);
 		boolean boredomFlag = (getBoredom() < warningIndex);
 		boolean chargeFlag = (charge < warningIndex); 

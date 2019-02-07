@@ -115,7 +115,7 @@ public class VirtualPetShelter {
 	}
 
 	public void tickAll(int time) {
-		time = time*3;
+		time = time*2;
 		cageCleanliness -= time; // changes
 		cageCleanliness = enforceLowValue(cageCleanliness);
 		for (VirtualPet specificPet : petList.values()) {
