@@ -181,7 +181,7 @@ public class VirtualPetShelter {
 		}
 		return userPetChoice;
 	}
-	
+
 	public String nameAllCage(Scanner input) {
 		int counter;
 		String userPetChoice;
@@ -242,11 +242,13 @@ public class VirtualPetShelter {
 				} else {
 					System.out.println("Please pick a better number.");
 				}
+			} else {
+				break;
 			}
 		}
 		return userPetChoice;
 	}
-	
+
 	public String nameAllRobotic(Scanner input) {
 		int counter;
 		String userPetChoice;
@@ -304,7 +306,7 @@ public class VirtualPetShelter {
 		}
 		return userPetChoice;
 	}
-	
+
 	public void checkLowValueAll() {
 
 		for (VirtualPet specificPet : petList.values()) {

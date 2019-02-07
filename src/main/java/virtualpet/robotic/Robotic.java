@@ -30,10 +30,10 @@ public abstract class Robotic extends VirtualPet {
 
 	public void getStatusChange() {
 		System.out.println(getName() + " - " + getClass().getSimpleName()
-				+ "\n Charge \t" + barMaker(charge) 
+				+ "\n Cleanliness \t" + barMaker(getCleanliness()) 
 				+ "\n Boredom \t" + barMaker(getBoredom())
-				+ "\n Fragmentation \t" + barMaker(fragmentation)
-				+ "\n Cleanliness \t" + barMaker(getCleanliness())); 
+				+ "\n Charge \t" + barMaker(charge) 
+				+ "\n Fragmentation \t" + barMaker(fragmentation));
 	}
 
 	// constructor
