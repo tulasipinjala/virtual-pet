@@ -151,6 +151,30 @@ public class VirtualPetShelter {
 
 	}
 
+	public boolean organicChecker() {
+		boolean exists = false;
+
+		for (VirtualPet specificPet : petList.values()) {
+			if (specificPet instanceof Organic) {
+				exists = true;
+			}
+		}
+		
+		return exists;
+	}
+	
+	public boolean roboticChecker() {
+		boolean exists = false;
+
+		for (VirtualPet specificPet : petList.values()) {
+			if (specificPet instanceof Robotic) {
+				exists = true;
+			}
+		}
+		
+		return exists;
+	}
+
 	public String nameAll(Scanner input) {
 		int counter;
 		String userPetChoice;
@@ -275,6 +299,8 @@ public class VirtualPetShelter {
 				} else {
 					System.out.println("Please pick a better number.");
 				}
+			} else {
+				break;
 			}
 		}
 		return userPetChoice;
