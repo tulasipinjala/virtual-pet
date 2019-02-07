@@ -42,7 +42,7 @@ public class Application {
 		// This section determines your first pet
 		// Help display
 		String intro = "Pet types \n" + " Organic - choosing an animal pet\n" + " Robotic - choosing a robot pet\n\n"
-				+ "WARNING" + " If you let any of the pet's properties go to zero, it will be adopted by Mr. Reaper.";
+				+ "WARNING:" + " If you let any of the pet's properties go to zero, it will automatically be adopted.";
 
 		String commands = "Commands\n"
 				+ " 1. Clean <pet name><all><cages>- Clean your pet by name, all pets, or their cages. This will keep your pets clean and healthy.\n"
