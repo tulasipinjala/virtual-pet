@@ -446,7 +446,7 @@ public class VirtualPetShelter {
 	private static String printCapitalizedVersion(String message) {
 		String[] messageSplit = message.trim().split("\\s+");
 		if (messageSplit.length == 1) {
-			return message.substring(0, 1).toUpperCase() + message.substring(1).toLowerCase();
+			return message.trim().substring(0, 1).toUpperCase() + message.trim().substring(1).toLowerCase();
 		} else {
 			String longName = messageSplit[0].substring(0, 1).toUpperCase()
 					+ messageSplit[0].substring(1).toLowerCase();

@@ -81,6 +81,8 @@ public abstract class Organic extends VirtualPet {
 		MakeSound.playSound(getDirectory() + File.separator + "soundfiles" + File.separator + soundOrganic + ".wav");
 	}
 	
+	//Instead of using a setter, we would've needed to write 6 additional methods for each subclass setting the
+	// soundOrganic variable to a particular value and then calling the method in the subclass constructor
 	public void setSound(String organicType) {
 		soundOrganic = organicType;
 	}

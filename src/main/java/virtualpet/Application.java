@@ -45,14 +45,14 @@ public class Application {
 				+ "WARNING" + " If you let any of the pet's properties go to zero, it will be adopted by Mr. Reaper.";
 
 		String commands = "Commands\n"
-				+ " 1. Clean <petname><all><cages>\t- Clean your pet, all pets, or their cages. This will keep your pets clean and healthy.\n"
-				+ " 2. Play <petname><all>\t\t- Plays with all of your pets\n"
-				+ " 3. Checkup <petname><all>\t- Takes your Organic pet to the vet to improve health\n"
-				+ " 4. Feed <petname><all>\t\t- Feeds your Organic pet\n"
-				+ " 5. Water <petname><all>\t- Give your Organic pet water\n"
-				+ " 6. Plugin <petname><all>\t- Charge Robotic pet\n"
-				+ " 7. Defrag <petname><all>\t- Defrag Robotic pet\n" + " 8. Add <petname>\t\t- Admit a new pet\n"
-				+ " 9. Adopt <petname>\t\t- This removes your pet from the shelter. THIS WILL BE PERMANENT.\n"
+				+ " 1. Clean <pet name><all><cages>\t- Clean your pet by name, all pets, or their cages. This will keep your pets clean and healthy.\n"
+				+ " 2. Play <pet name><all>\t\t- Plays with all of your pets\n"
+				+ " 3. Checkup <pet name><all>\t- Takes your Organic pet to the vet to improve health\n"
+				+ " 4. Feed <pet name><all>\t\t- Feeds your Organic pet\n"
+				+ " 5. Water <pet name><all>\t- Give your Organic pet water\n"
+				+ " 6. Plugin <pet name><all>\t- Charge Robotic pet\n"
+				+ " 7. Defrag <pet name><all>\t- Defrag Robotic pet\n" + " 8. Add <petname>\t\t- Admit a new pet\n"
+				+ " 9. Adopt <pet name>\t\t- This removes your pet from the shelter. THIS WILL BE PERMANENT.\n"
 				+ " 0. List \t\t\t- Displays all pets and their stats.\n" + " Exit \t\t\t\t- Exits VPet";
 		// Chooses a pet name. Choose if your pet is Organic or Robotic. Also allows
 		// user to choose help to find a list of commands
@@ -524,7 +524,7 @@ public class Application {
 	private static String printCapitalizedVersion(String message) {
 		String[] messageSplit = message.trim().split("\\s+");
 		if (messageSplit.length == 1) {
-			return message.substring(0, 1).toUpperCase() + message.substring(1).toLowerCase();
+			return message.trim().substring(0, 1).toUpperCase() + message.trim().substring(1).toLowerCase();
 		} else {
 			String longName = messageSplit[0].substring(0, 1).toUpperCase()
 					+ messageSplit[0].substring(1).toLowerCase();
