@@ -57,16 +57,16 @@ public class Application {
 		// Chooses a pet name. Choose if your pet is Organic or Robotic. Also allows
 		// user to choose help to find a list of commands
 		System.out.println("Please type in your first pet's name. Type \"help\" for list of commands.");
-		String userInput = input.nextLine();
+		String userInput = exitChecker(input.nextLine());
 
 		if (userInput.toLowerCase().equals("help")) {
 			System.out.println(intro);
 			System.out.println(commands);
 			System.out.println("Please type in your pet's name");
-			userInput = input.nextLine();
+			userInput = exitChecker(input.nextLine());
 		}
 		System.out.println("Is your pet Organic or Robotic?");
-		String userType = input.nextLine();
+		String userType = exitChecker(input.nextLine());
 		userType = typeGuesser(userType, input);
 
 		userPetCreate = choosePetSubclass(input, userPetCreate, userType);
@@ -82,7 +82,7 @@ public class Application {
 			startTime = System.nanoTime();
 			userAction = "";
 			userPetChoice = "";
-			userInput = input.nextLine();
+			userInput = exitChecker(input.nextLine());
 			userInputSplit = userInput.trim().split("\\s+");
 			if (userInputSplit.length == 1) {
 				userAction = userInput.trim();
@@ -236,9 +236,9 @@ public class Application {
 				}
 			} else if (userAction.equalsIgnoreCase("add") || userAction.equalsIgnoreCase("8")) {
 				System.out.println("What is your new pet's name?");
-				userInput = input.nextLine();
+				userInput = exitChecker(input.nextLine());
 				System.out.println("Is your pet Organic or Robotic?");
-				userType = input.nextLine();
+				userType = exitChecker(input.nextLine());
 				userType = typeGuesser(userType, input);
 				userPetCreate = choosePetSubclass(input, userPetCreate, userType);
 
@@ -284,9 +284,9 @@ public class Application {
 		if (virtualPetShelter.getVirtualPetCount() <= 0) {
 			System.out.println("All of your pets have been adopted. You need a new pet!");
 			System.out.println("What is your new pet's name?");
-			userInput = input.nextLine();
+			userInput = exitChecker(input.nextLine());
 			System.out.println("Is your pet Organic or Robotic?");
-			userType = input.nextLine();
+			userType = exitChecker(input.nextLine());
 			userType = typeGuesser(userType, input);
 			userPetCreate = choosePetSubclass(input, userPetCreate, userType);
 
@@ -305,7 +305,7 @@ public class Application {
 			System.out.println("4. Caterpie");
 			System.out.println("5. Weedle");
 			System.out.println("6. Pikachu");
-			userPetCreate = printCapitalizedVersion(input.nextLine());
+			userPetCreate = printCapitalizedVersion(exitChecker(input.nextLine()));
 			userPetCreate = roboticChoiceChecker(userPetCreate, input);
 		} else {
 			System.out.println("Which Organic pet would you like?");
@@ -317,7 +317,7 @@ public class Application {
 			System.out.println("6. Lion");
 			System.out.println("7. Pig");
 			System.out.println("8. Wolf");
-			userPetCreate = printCapitalizedVersion(input.nextLine());
+			userPetCreate = printCapitalizedVersion(exitChecker(input.nextLine()));
 			userPetCreate = organicChoiceChecker(userPetCreate, input);
 
 		}
@@ -358,7 +358,7 @@ public class Application {
 				System.out.println("4. Caterpie");
 				System.out.println("5. Weedle");
 				System.out.println("6. Pikachu");
-				userPetCreate = printCapitalizedVersion(input.nextLine());
+				userPetCreate = printCapitalizedVersion(exitChecker(input.nextLine()));
 			}
 		}
 		return userPetCreate;
@@ -407,7 +407,7 @@ public class Application {
 				System.out.println("6. Lion");
 				System.out.println("7.Pig");
 				System.out.println("8. Wolf");
-				userPetCreate = printCapitalizedVersion(input.nextLine());
+				userPetCreate = printCapitalizedVersion(exitChecker(input.nextLine()));
 			}
 		}
 		return userPetCreate;
@@ -550,11 +550,19 @@ public class Application {
 				break;
 			} else {
 				System.out.println("Please try again. Is your pet Organic or Robotic?");
-				userType = input.nextLine();
+				userType = exitChecker(input.nextLine());
 			}
 			organicGuess = Levenshtein.calculate(printCapitalizedVersion(userType), "Organic");
 			roboticGuess = Levenshtein.calculate(printCapitalizedVersion(userType), "Robotic");
 		}
 		return guess;
+	}
+	
+	public static String exitChecker(String userWord) {
+		if (userWord.equalsIgnoreCase("exit")) {
+			System.exit(0);
+		} 
+		
+		return userWord;
 	}
 }

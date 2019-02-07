@@ -190,7 +190,7 @@ public class VirtualPetShelter {
 			System.out.println(counter + ". All");
 			numberWithPet.put(counter, "All");
 			System.out.println("");
-			userPetChoice = printCapitalizedVersion(input.nextLine());
+			userPetChoice = printCapitalizedVersion(exitChecker(input.nextLine()));
 
 			if (isNumeric(userPetChoice)) {
 				if (numberWithPet.containsKey(Integer.parseInt(userPetChoice))) {
@@ -224,7 +224,7 @@ public class VirtualPetShelter {
 			System.out.println(counter + ". All");
 			numberWithPet.put(counter, "All");
 			System.out.println("");
-			userPetChoice = printCapitalizedVersion(input.nextLine());
+			userPetChoice = printCapitalizedVersion(exitChecker(input.nextLine()));
 
 			if (isNumeric(userPetChoice)) {
 				if (numberWithPet.containsKey(Integer.parseInt(userPetChoice))) {
@@ -257,7 +257,7 @@ public class VirtualPetShelter {
 			System.out.println(counter + ". All");
 			numberWithPet.put(counter, "All");
 			System.out.println("");
-			userPetChoice = printCapitalizedVersion(input.nextLine());
+			userPetChoice = printCapitalizedVersion(exitChecker(input.nextLine()));
 
 			if (isNumeric(userPetChoice)) {
 				if (numberWithPet.containsKey(Integer.parseInt(userPetChoice))) {
@@ -290,7 +290,7 @@ public class VirtualPetShelter {
 			System.out.println(counter + ". All");
 			numberWithPet.put(counter, "All");
 			System.out.println("");
-			userPetChoice = printCapitalizedVersion(input.nextLine());
+			userPetChoice = printCapitalizedVersion(exitChecker(input.nextLine()));
 
 			if (isNumeric(userPetChoice)) {
 				if (numberWithPet.containsKey(Integer.parseInt(userPetChoice))) {
@@ -319,7 +319,7 @@ public class VirtualPetShelter {
 				counter++;
 			}
 			System.out.println("");
-			userPetChoice = printCapitalizedVersion(input.nextLine());
+			userPetChoice = printCapitalizedVersion(exitChecker(input.nextLine()));
 
 			if (isNumeric(userPetChoice)) {
 				if (numberWithPet.containsKey(Integer.parseInt(userPetChoice))) {
@@ -465,6 +465,14 @@ public class VirtualPetShelter {
 			return false;
 		}
 		return true;
+	}
+	
+	public static String exitChecker(String userWord) {
+		if (userWord.equalsIgnoreCase("exit")) {
+			System.exit(0);
+		} 
+		
+		return userWord;
 	}
 
 }
