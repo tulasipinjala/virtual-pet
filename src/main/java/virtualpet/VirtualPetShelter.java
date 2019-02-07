@@ -328,6 +328,8 @@ public class VirtualPetShelter {
 				} else {
 					System.out.println("Please pick a better number.");
 				}
+			} else {
+				break;
 			}
 		}
 		return userPetChoice;

@@ -45,13 +45,14 @@ public class Application {
 				+ "WARNING" + " If you let any of the pet's properties go to zero, it will be adopted by Mr. Reaper.";
 
 		String commands = "Commands\n"
-				+ " 1. Clean <pet name><all><cages>\t- Clean your pet by name, all pets, or their cages. This will keep your pets clean and healthy.\n"
-				+ " 2. Play <pet name><all>\t\t- Plays with all of your pets\n"
+				+ " 1. Clean <pet name><all><cages>- Clean your pet by name, all pets, or their cages. This will keep your pets clean and healthy.\n"
+				+ " 2. Play <pet name><all>\t- Plays with all of your pets\n"
 				+ " 3. Checkup <pet name><all>\t- Takes your Organic pet to the vet to improve health\n"
-				+ " 4. Feed <pet name><all>\t\t- Feeds your Organic pet\n"
+				+ " 4. Feed <pet name><all>\t- Feeds your Organic pet\n"
 				+ " 5. Water <pet name><all>\t- Give your Organic pet water\n"
 				+ " 6. Plugin <pet name><all>\t- Charge Robotic pet\n"
-				+ " 7. Defrag <pet name><all>\t- Defrag Robotic pet\n" + " 8. Add <petname>\t\t- Admit a new pet\n"
+				+ " 7. Defrag <pet name><all>\t- Defrag Robotic pet\n" 
+				+ " 8. Add <pet name>\t\t- Admit a new pet\n"
 				+ " 9. Adopt <pet name>\t\t- This removes your pet from the shelter. THIS WILL BE PERMANENT.\n"
 				+ " 0. List \t\t\t- Displays all pets and their stats.\n" + " Exit \t\t\t\t- Exits VPet";
 		// Chooses a pet name. Choose if your pet is Organic or Robotic. Also allows
@@ -59,7 +60,7 @@ public class Application {
 		System.out.println("Please type in your first pet's name. Type \"help\" for list of commands.");
 		String userInput = exitChecker(input.nextLine());
 
-		if (userInput.toLowerCase().equals("help")) {
+		while (userInput.toLowerCase().equals("help")) {
 			System.out.println(intro);
 			System.out.println(commands);
 			System.out.println("Please type in your pet's name");
@@ -405,7 +406,7 @@ public class Application {
 				System.out.println("4. Duck");
 				System.out.println("5. Hawk");
 				System.out.println("6. Lion");
-				System.out.println("7.Pig");
+				System.out.println("7. Pig");
 				System.out.println("8. Wolf");
 				userPetCreate = printCapitalizedVersion(exitChecker(input.nextLine()));
 			}
